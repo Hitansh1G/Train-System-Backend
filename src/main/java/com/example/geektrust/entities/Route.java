@@ -39,4 +39,8 @@ public class Route extends BaseEntity{
         }
         return false;
     }
+    @Override
+    public String getId() {
+        return super.getId();
+    }
 }

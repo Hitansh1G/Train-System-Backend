@@ -25,7 +25,7 @@ public class Station extends BaseEntity {
         return distanceFromSource;
     }
 
-    public String getStationName(String stationName) {
+    public String getStationName() {
         return stationName;
     }
 
@@ -58,4 +58,7 @@ public class Station extends BaseEntity {
     }
 
 
+    public Integer getDistance() {
+        return distanceFromSource;
+    }
 }
