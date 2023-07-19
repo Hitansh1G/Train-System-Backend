@@ -1,15 +1,18 @@
 package com.example.geektrust.services;
 
+import com.example.geektrust.dto.BogieDTO;
 import com.example.geektrust.entities.Bogie;
+import com.example.geektrust.entities.Route;
 import com.example.geektrust.entities.Train;
 import com.example.geektrust.exceptions.JourneyEndedException;
-import com.example.geektrust.repositories.IBogieRepository;
-import com.example.geektrust.repositories.IRouteRepository;
-import com.example.geektrust.repositories.IStationRepository;
-import com.example.geektrust.repositories.ITrainRepository;
+import com.example.geektrust.repositories.*;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.example.geektrust.dto.BogieDTO;
+import com.example.geektrust.services.BogieService;
+
+import java.util.*;
+
+import static java.util.Collection.*;
 
 public class TrainService implements ITrainService{
 
@@ -39,15 +42,46 @@ public class TrainService implements ITrainService{
             throw new JourneyEndedException("JOURNEY_ENDED");
         }
         trainBBogie.addAll(trainABogie);
+
+        trainBBogie.sort(new BogieDTO(iRouteRepository));
+
+        //delete HYD from the list
+        trainBBogie.removeIf(bogie -> bogie.getDestinationStation() != null && "HYB".equals(bogie.getDestinationStation().getStationCode()));
+
+        Train AB = new Train("Train_AB", trainBBogie);
+
+        iTrainRepository.deleteTrain((trainA));
+        iTrainRepository.deleteTrain((trainB));
+
+        iTrainRepository.saveTrain(AB);
+
+        return AB;
     }
 
     @Override
     public Train travel(String trainName, String routeName, String destinationStation) {
-        return null;
+        Train train = iTrainRepository.findTrainByName(trainName);
+        Route route = iRouteRepository.findRouteByName(routeName);
+
+        List<Bogie>bogiesToRemove = iBogieRepository.generateListOfBogiesToBeRemoved(route.getStationsStops(),
+                                                                                    train.getBogiesList(),
+                                                                                    destinationStation);
+        for(Bogie bogie : bogiesToRemove){
+            train.removeBogie(bogie);
+        }
+
+        iTrainRepository.saveTrain(train);
+
+        return train;
     }
+
+
+
+
+
 
     @Override
     public Train createTrain(String trainName, List<String> bogies) {
-        return null;
+        LinkedList<Bogie> bogies1 = iBogieRepository.BogieListing(iBogieRepository, iStationRepository, bogies);
     }
 }

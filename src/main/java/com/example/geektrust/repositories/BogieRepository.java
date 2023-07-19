@@ -1,8 +1,11 @@
 package com.example.geektrust.repositories;
 
 import com.example.geektrust.entities.Bogie;
+import com.example.geektrust.entities.Station;
+import com.example.geektrust.entities.Train;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,4 +75,51 @@ public class BogieRepository implements IBogieRepository {
     public HashMap<String, Bogie> BogieListing() {
         return bogieListing;
     }
+
+    @Override
+    public List<Bogie> generateListOfBogiesToBeRemoved(LinkedList<Station> stations, LinkedList<Bogie> bogies, String dest) {
+        List<Bogie>listOfBogiesTobeRemoved = new LinkedList<Bogie>();
+        for(Station station : stations){
+            if(station.getStationCode().equals(dest)){
+                break;
+            }
+            detachedBogie(station,bogies, listOfBogiesTobeRemoved);
+        }
+        return listOfBogiesTobeRemoved;
+    }
+
+    @Override
+    public void detachedBogie(Station station, LinkedList<Bogie> bogies, List<Bogie> bogiesToBeRemoved) {
+        for(Bogie bogie: bogies){
+            if(bogie.getDestinationStation()!=null && bogie.getDestinationStation().equals(station)){
+                bogiesToBeRemoved.add(bogie);
+            }
+        }
+    }
+
+    @Override
+    public LinkedList<Bogie> createListOfBogies(IBogieRepository iBogieRepository, IStationRepository iStationRepository, List<String> bogies) {
+        LinkedList<Bogie> bogiesList = new LinkedList<Bogie>();
+        for(String indivisualBogie : bogies){
+            Bogie temp = createBogie(iBogieRepository,iStationRepository,indivisualBogie);
+            bogiesList.add(temp);
+        }
+        return bogiesList;
+    }
+
+    @Override
+    public Bogie createBogie(IBogieRepository iBogieRepository, IStationRepository iStationRepository, String bogieName) {
+        Bogie bogie;
+        if(bogieName.equals("ENGINE")){
+            bogie = new Bogie(null);
+            bogie = iBogieRepository.saveBogie(bogie);
+        }
+        else{
+            Station station = iStationRepository.findStationByCode(bogieName);
+            bogie = new Bogie(station);
+            bogie = iBogieRepository.saveBogie(bogie);
+        }
+        return bogie;
+    }
+
 }

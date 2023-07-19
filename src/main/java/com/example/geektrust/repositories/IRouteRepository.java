@@ -11,7 +11,10 @@ public interface IRouteRepository extends CRUDRepository<Route,String> {
 
     Route findRouteByName(String routeName);
 
-    List<Route> getAllRoutes();
+    static List<Route> getAllRoutes() {
+        return null;
+    }
+
 
     void preDefinedRoute();
 
