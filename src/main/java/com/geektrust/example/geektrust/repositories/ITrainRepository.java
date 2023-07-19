@@ -8,7 +8,7 @@ public interface ITrainRepository extends CRUDRepository<Train,String>{
 
     Train findTrainByName(String trainName);
 
-    void deleteTrain(String trainName);   
+    void deleteTrain(String trainName);
 
     HashMap<String,Train> getTrainListing();
 }

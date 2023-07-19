@@ -41,13 +41,7 @@ public class TrainRepository implements ITrainRepository {
         return trainListing.values().stream().filter(train -> train.getTrainName().equals(trainName)).findFirst().get();
     }
 
-    @Override
-    public void deleteTrain(String trainName) {
-        // Find the train
-        Train train = trainListing.values().stream().filter(v -> v.getTrainName().equals(trainName)).findFirst().get();
-        trainListing.remove(train.getId());
-        
-    }
+
 
 
     @Override
@@ -77,9 +71,19 @@ public class TrainRepository implements ITrainRepository {
         return false;
     }
 
-    @Override
-    public void delete(Train entity) {
 
+    @Override
+    public void deleteTrain(String trainName) {
+        // Find the train
+        Train train = trainListing.values().stream().filter(v -> v.getTrainName().equals(trainName)).findFirst().get();
+        trainListing.remove(train.getId());
+
+    }
+
+    @Override
+    public void delete(Train trainName) {
+        Train train = trainListing.values().stream().filter(v -> v.getTrainName().equals(trainName)).findFirst().get();
+        trainListing.remove(train.getId());
     }
 
     @Override
