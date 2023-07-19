@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.verify;
 import java.util.ArrayList;
-import com.geektrust.example.geektrust.exceptions.CommandNotFoundException;
+import com.geektrust.example.geektrust.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,7 +58,7 @@ public class CommandInvokerTest {
     @DisplayName("Command not present must return exception")
     public void execute_command_must_return_exception_if_command_not_present(){
         //Act and assert
-        assertThrows(CommandNotFoundException.class, () -> commandInvoker.executeCommand("NOT_PRESENT", new ArrayList<String>()));
+        assertThrows(NotFoundException.class, () -> commandInvoker.executeCommand("NOT_PRESENT", new ArrayList<String>()));
     }
 
 

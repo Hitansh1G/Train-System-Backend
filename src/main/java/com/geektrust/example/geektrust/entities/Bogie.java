@@ -3,11 +3,8 @@ package com.geektrust.example.geektrust.entities;
 public class Bogie extends BaseEntitiy {
     private Station destinationStation;
 
-    private Boolean findIfOnedestinationStationIsNull(Bogie  bogie1, Bogie  bogie2){
-        if( bogie1.getdestinationStation() == null &&  bogie2.getdestinationStation()!=null || ( bogie1.getdestinationStation()!= null &&  bogie2.getdestinationStation() == null)){
-            return true;
-        }
-        return false;
+    private Boolean ifDestinationNull(Bogie  bogie1, Bogie  bogie2){
+        return bogie1.getdestinationStation() == null && bogie2.getdestinationStation() != null || (bogie1.getdestinationStation() != null && bogie2.getdestinationStation() == null);
     }
 
     public Bogie(String id, Station destinationStation) {
@@ -49,7 +46,7 @@ public class Bogie extends BaseEntitiy {
         } 
         if (id == null && other.getId() == null && destinationStation == null && other.getdestinationStation() == null)
             return true;
-        if(id == null && other.getId() == null && (findIfOnedestinationStationIsNull(this, other))){
+        if(id == null && other.getId() == null && (ifDestinationNull(this, other))){
             return false;
         }
         return destinationStation.equals(other.getdestinationStation());

@@ -68,7 +68,7 @@ public class LoadDataRepository implements IDataRepository {
 
         
 
-        // Saving the stations of other route
+        // stations of second route
         LinkedList<Station> stationsOfRoute2 = new LinkedList<Station>();
         station = new Station("Trivandrum", "TVC", 0);
         tempStation = iStationRepository.save(station);

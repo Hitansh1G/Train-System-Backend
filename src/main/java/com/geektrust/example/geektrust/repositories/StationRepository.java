@@ -18,25 +18,9 @@ public class StationRepository implements IStationRepository {
     public StationRepository(HashMap<String,Station> stationListing){
         this.stationListing = stationListing;
     }
-
-//    @Override
-//    public Station saveStation(Station station) {
-//        if(station.getId() == null){
-//            Increment++;
-//            Station newStation = new Station(Integer.toString(Increment), station.getStationName(),
-//                    station.getStationCode(), station.getDistance());
-//            stationListing.put(newStation.getId(), newStation);
-//            return newStation;
-//        }
-//        stationListing.put(station.getId(), station);
-//        return station;
-//    }
-
     @Override
     public Station findStationByCode(String stationCode) {
-        Station station = stationListing.entrySet().stream().filter(e -> e.getValue().getStationCode().equals(stationCode))
-                .map(Map.Entry::getValue).findFirst().get();
-        return station;
+        return stationListing.values().stream().filter(station -> station.getStationCode().equals(stationCode)).findFirst().get();
     }
 
     @Override
@@ -46,9 +30,9 @@ public class StationRepository implements IStationRepository {
 
     @Override
     public Station save(Station station) {
-        if(station.getId() == null){
+        if (station.getId() == null) {
             Increment++;
-            Station newStation = new Station(Integer.toString(Increment), station.getStationName(),
+            Station newStation = new Station("S" + Increment, station.getStationName(),
                     station.getStationCode(), station.getDistance());
             stationListing.put(newStation.getId(), newStation);
             return newStation;
@@ -56,6 +40,7 @@ public class StationRepository implements IStationRepository {
         stationListing.put(station.getId(), station);
         return station;
     }
+
 
     @Override
     public List<Station> findAll() {

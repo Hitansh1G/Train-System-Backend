@@ -24,18 +24,6 @@ public class TrainRepository implements ITrainRepository {
         return trainListing;
     }
 
-//    @Override
-//    public Train saveTrain(Train train) {
-//        if(train.getId() == null){
-//            Increment++;
-//        Train newTrain = new Train(Integer.toString(Increment), train.getTrainName(), train.getBogies());
-//        trainListing.put(newTrain.getId(), newTrain);
-//        return newTrain;
-//        }
-//        trainListing.put(train.getId(), train);
-//        return train;
-//    }
-
     @Override
     public Train findTrainByName(String trainName) {
         return trainListing.values().stream().filter(train -> train.getTrainName().equals(trainName)).findFirst().get();
@@ -46,14 +34,18 @@ public class TrainRepository implements ITrainRepository {
 
     @Override
     public Train save(Train train) {
-        if(train.getId() == null){
-            Increment++;
-            Train newTrain = new Train(Integer.toString(Increment), train.getTrainName(), train.getBogies());
+        if (train.getId() == null) {
+            // Generate a new ID for the train
+            int newId = Increment++;
+            Train newTrain = new Train(Integer.toString(newId), train.getTrainName(), train.getBogies());
             trainListing.put(newTrain.getId(), newTrain);
             return newTrain;
         }
+
+        // If the train already has an ID, update the entry in the train listing
         trainListing.put(train.getId(), train);
         return train;
+
     }
 
     @Override
@@ -82,7 +74,7 @@ public class TrainRepository implements ITrainRepository {
 
     @Override
     public void delete(Train trainName) {
-        Train train = trainListing.values().stream().filter(v -> v.getTrainName().equals(trainName)).findFirst().get();
+        Train train = trainListing.values().stream().filter(v -> false).findFirst().get();
         trainListing.remove(train.getId());
     }
 

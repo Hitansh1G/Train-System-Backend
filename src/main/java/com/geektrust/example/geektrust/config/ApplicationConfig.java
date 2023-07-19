@@ -18,18 +18,18 @@ import com.geektrust.example.geektrust.services.ITrainService;
 import com.geektrust.example.geektrust.services.TrainService;
 
 public class ApplicationConfig {
-    private IRouteRepository iRouteRepository = new RouteRepository();
-    private ITrainRepository iTrainRepository = new TrainRepository();
-    private IBogieRepository iBogieRepository = new BogieRepository();
-    private IStationRepository iStationRepository = new StationRepository();
+    private final IRouteRepository iRouteRepository = new RouteRepository();
+    private final ITrainRepository iTrainRepository = new TrainRepository();
+    private final IBogieRepository iBogieRepository = new BogieRepository();
+    private final IStationRepository iStationRepository = new StationRepository();
 
-    private ITrainService iTrainService = new TrainService(iRouteRepository, iTrainRepository, iBogieRepository,
+    private final ITrainService iTrainService = new TrainService(iRouteRepository, iTrainRepository, iBogieRepository,
             iStationRepository);
 
-    private ICommand loadDataCommand = new DataCommand(iStationRepository, iRouteRepository);
-    private ICommand loadTrainDataCommand = new LoadTrainDataCommand(iTrainService);
-    private ICommand travelCommand = new TravelCommand(iTrainService);
-    private ICommand mergeTrainCommand = new MergeTrainCommand(iTrainService);
+    private final ICommand loadDataCommand = new DataCommand(iStationRepository, iRouteRepository);
+    private final ICommand loadTrainDataCommand = new LoadTrainDataCommand(iTrainService);
+    private final ICommand travelCommand = new TravelCommand(iTrainService);
+    private final ICommand mergeTrainCommand = new MergeTrainCommand(iTrainService);
 
     private final CommandInvoker commandInvoker = new CommandInvoker();
 

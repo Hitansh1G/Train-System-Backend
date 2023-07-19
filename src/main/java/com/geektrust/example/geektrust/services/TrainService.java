@@ -1,19 +1,20 @@
 package com.geektrust.example.geektrust.services;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.exceptions.JourneyEndedException;
-import com.geektrust.example.geektrust.dto.BoggiesDTO;
-import com.geektrust.example.geektrust.dto.GeneratedListDTO;
-import com.geektrust.example.geektrust.dto.ComparatorDTO;
+import com.geektrust.example.geektrust.dtos.BoggiesDTO;
+import com.geektrust.example.geektrust.dtos.GeneratedListDTO;
+import com.geektrust.example.geektrust.dtos.ComparatorDTO;
 import com.geektrust.example.geektrust.repositories.IBogieRepository;
 import com.geektrust.example.geektrust.repositories.IRouteRepository;
 import com.geektrust.example.geektrust.repositories.IStationRepository;
 import com.geektrust.example.geektrust.repositories.ITrainRepository;
+
+import static com.geektrust.example.geektrust.Util.Constants.JOURNEY_ENDED;
 
 public class TrainService implements ITrainService {
     private final IRouteRepository iRouteRepository;
@@ -34,52 +35,57 @@ public class TrainService implements ITrainService {
         Train trainA = iTrainRepository.findTrainByName(trainAName);
         Train trainB = iTrainRepository.findTrainByName(trainBName);
 
-        //Find the list of boggies
-        LinkedList<Bogie> trainA_Bogies = trainA.getBogies();
-        LinkedList<Bogie> trainB_Bogies = trainB.getBogies();
+        // Find the list of boggies
+        LinkedList<Bogie> trainA_Bogies = new LinkedList<>(trainA.getBogies());
+        LinkedList<Bogie> trainB_Bogies = new LinkedList<>(trainB.getBogies());
         if (trainA_Bogies.isEmpty() && trainB_Bogies.isEmpty()) {
-            throw new JourneyEndedException("JOURNEY_ENDED");
+            throw new JourneyEndedException(JOURNEY_ENDED);
         }
+
+        // Merge trainB bogies into trainA
         trainA_Bogies.addAll(trainB_Bogies);
 
-
+        // Sort the bogies based on route information
         trainA_Bogies.sort(new ComparatorDTO(iRouteRepository));
 
-        //Remove Hyderabad from the list of boggies in merged train
-        while(trainA_Bogies.getLast().getdestinationStation()!=null && trainA_Bogies.getLast().getdestinationStation().getStationCode().equals("HYB")){
+        // Remove Hyderabad from the list of bogies in the merged train
+        while (!trainA_Bogies.isEmpty() && trainA_Bogies.getLast().getdestinationStation() != null
+                && trainA_Bogies.getLast().getdestinationStation().getStationCode().equals("HYB")) {
             trainA_Bogies.removeLast();
         }
-        Train AB = new Train("TRAIN_AB", trainA_Bogies);
+
+        // Create a new Train object with merged bogies
+        Train mergedTrain = new Train("TRAIN_AB", trainA_Bogies);
+
+        // Delete the original trainA and trainB from the repository
         iTrainRepository.deleteTrain(trainAName);
         iTrainRepository.deleteTrain(trainBName);
-        iTrainRepository.save(AB);
-        return AB;
+
+        // Save the mergedTrain to the repository
+        iTrainRepository.save(mergedTrain);
+
+        return mergedTrain;
     }
 
+
     @Override
-    public Train travel(String trainName, String routeName, String dest) {
-        // Find the train
-        Train train = iTrainRepository.findTrainByName(trainName);
-        // Find the route
-        Route route = iRouteRepository.findByName(routeName);
-
-        // travel upto dest
-        List<Bogie> boggiesToBeRemoved = GeneratedListDTO.generateListOfBoggiesToBeRemoved(route.getStations(), train.getBogies(), dest);
-
-
-        for(Bogie bogie :  boggiesToBeRemoved){
-            train.deleteBoggy(bogie);
+    public Train travel(String trainName, String routeName, String destination) {
+        Train trainEntity = iTrainRepository.findTrainByName(trainName);
+        Route routeEntity = iRouteRepository.findByName(routeName);
+        List<Bogie> bogsToRemove = GeneratedListDTO.generateBogiesToRemoved(routeEntity.getStations(), trainEntity.getBogies(), destination);
+        for (Bogie bogie : bogsToRemove) {
+            trainEntity.deleteBogie(bogie);
         }
-        iTrainRepository.save(train);
-        return train;
+        iTrainRepository.save(trainEntity);
+        return trainEntity;
+
     }
 
     @Override
-    public Train createTrain(String trainName, List<String> boggies) {
-        LinkedList<Bogie> newBoggies = BoggiesDTO.createListOfBoggies(iBogieRepository, iStationRepository, boggies);
-        Train newTrain = new Train(trainName, newBoggies);
-        Train savedTrain = iTrainRepository.save(newTrain);
-        return savedTrain;
+    public Train createTrain(String trainName, List<String> bogies) {
+        LinkedList<Bogie> newBogies = BoggiesDTO.createListOfBogies(iBogieRepository, iStationRepository, bogies);
+        Train newTrain = new Train(trainName, newBogies);
+        return iTrainRepository.save(newTrain);
     }
     
 }

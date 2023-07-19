@@ -3,7 +3,7 @@ package com.geektrust.example.geektrust.commands;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.geektrust.example.geektrust.exceptions.CommandNotFoundException;
+import com.geektrust.example.geektrust.exceptions.NotFoundException;
 
 public class CommandInvoker {
     private static final Map<String, ICommand> commandMap = new HashMap<>();
@@ -19,10 +19,10 @@ public class CommandInvoker {
     }
 
     // execute the command
-    public void executeCommand(String commandName, List<String> tokens) throws CommandNotFoundException {
+    public void executeCommand(String commandName, List<String> tokens) throws NotFoundException {
         ICommand command = get(commandName);
         if (command == null) {
-            throw new CommandNotFoundException();
+            throw new NotFoundException();
         }
         command.execute(tokens);
     }
