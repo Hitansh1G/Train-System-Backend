@@ -156,10 +156,10 @@ public class TrainServiceTest {
         when(stationRepository.findStationByCode("CHN")).thenReturn(stations.get(FIRST_INDEX));
         when(stationRepository.findStationByCode("SLM")).thenReturn(stations.get(SECOND_INDEX));
         when(stationRepository.findStationByCode("BLR")).thenReturn(stations.get(THIRD_INDEX));
-        when(boggyRepository.saveBoggy(new Bogie(null))).thenReturn(listOfBoggies.get(FIRST_INDEX));
-        when(boggyRepository.saveBoggy(new Bogie(stations.get(FIRST_INDEX)))).thenReturn(listOfBoggies.get(SECOND_INDEX));
-        when(boggyRepository.saveBoggy(new Bogie(stations.get(SECOND_INDEX)))).thenReturn(listOfBoggies.get(THIRD_INDEX));
-        when(boggyRepository.saveBoggy(new Bogie(stations.get(THIRD_INDEX)))).thenReturn(listOfBoggies.get(FOURTH_INDEX));
+        when(boggyRepository.save(new Bogie(null))).thenReturn(listOfBoggies.get(FIRST_INDEX));
+        when(boggyRepository.save(new Bogie(stations.get(FIRST_INDEX)))).thenReturn(listOfBoggies.get(SECOND_INDEX));
+        when(boggyRepository.save(new Bogie(stations.get(SECOND_INDEX)))).thenReturn(listOfBoggies.get(THIRD_INDEX));
+        when(boggyRepository.save(new Bogie(stations.get(THIRD_INDEX)))).thenReturn(listOfBoggies.get(FOURTH_INDEX));
 
         Train train = new Train("abc",listOfBoggies);
         Train toBeReturnedFromRepo = new Train("1","abc",listOfBoggies);

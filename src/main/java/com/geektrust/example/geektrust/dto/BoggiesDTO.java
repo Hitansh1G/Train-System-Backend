@@ -12,12 +12,12 @@ public class BoggiesDTO {
         Bogie bogie;
         if (boggyName.equals("ENGINE")) {
             bogie = new Bogie(null);
-            bogie = iBogieRepository.saveBoggy(bogie);
+            bogie = iBogieRepository.save(bogie);
         } else {
             // Find the station
             Station stn = iStationRepository.findStationByCode(boggyName);
             bogie = new Bogie(stn);
-            bogie = iBogieRepository.saveBoggy(bogie);
+            bogie = iBogieRepository.save(bogie);
         }
         return bogie;
     }
