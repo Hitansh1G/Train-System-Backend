@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class CommandInvokerTest {
-    private CommandInvoker commandInvoker;
+    private CommandInvoker invoker;
 
     @Mock
     DataCommand dataCommand;
@@ -30,22 +30,22 @@ public class CommandInvokerTest {
     
     @BeforeEach
     void setup(){
-        commandInvoker = new CommandInvoker();
-        commandInvoker.register("LOAD_DATA", dataCommand);
-        commandInvoker.register("TRAIN_A", loadTrainDataCommand);
-        commandInvoker.register("TRAIN_B", loadTrainDataCommand);
-        commandInvoker.register("TRAVEL", travelCommand);
-        commandInvoker.register("MERGE", mergeTrainCommand);
+        invoker = new CommandInvoker();
+        invoker.register("LOAD_DATA", dataCommand);
+        invoker.register("TRAIN_A", loadTrainDataCommand);
+        invoker.register("TRAIN_B", loadTrainDataCommand);
+        invoker.register("TRAVEL", travelCommand);
+        invoker.register("MERGE", mergeTrainCommand);
     }
 
     @Test
     @DisplayName("execute command test")
     public void execute_command_test(){
         //Act
-        commandInvoker.executeCommand("LOAD_DATA", anyList());
-        commandInvoker.executeCommand("TRAIN_A", anyList());
-        commandInvoker.executeCommand("TRAVEL", anyList());
-        commandInvoker.executeCommand("MERGE", anyList());
+        invoker.executeCommand("LOAD_DATA", anyList());
+        invoker.executeCommand("TRAIN_A", anyList());
+        invoker.executeCommand("TRAVEL", anyList());
+        invoker.executeCommand("MERGE", anyList());
 
         //Assert
         verify(dataCommand).execute(anyList());
@@ -56,10 +56,8 @@ public class CommandInvokerTest {
 
     @Test
     @DisplayName("Command not present must return exception")
-    public void execute_command_must_return_exception_if_command_not_present(){
+    public void executeCommandMustReturnExceptionIfCommandNotPresent() {
         //Act and assert
-        assertThrows(NotFoundException.class, () -> commandInvoker.executeCommand("NOT_PRESENT", new ArrayList<String>()));
+        assertThrows(NotFoundException.class, () -> invoker.executeCommand("NOT_PRESENT", new ArrayList<String>()));
     }
-
-
 }
