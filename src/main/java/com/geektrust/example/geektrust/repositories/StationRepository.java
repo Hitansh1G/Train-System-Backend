@@ -19,18 +19,18 @@ public class StationRepository implements IStationRepository {
         this.stationListing = stationListing;
     }
 
-    @Override
-    public Station saveStation(Station station) {
-        if(station.getId() == null){
-            Increment++;
-            Station newStation = new Station(Integer.toString(Increment), station.getStationName(),
-                    station.getStationCode(), station.getDistance());
-            stationListing.put(newStation.getId(), newStation);
-            return newStation;
-        }
-        stationListing.put(station.getId(), station);
-        return station;        
-    }
+//    @Override
+//    public Station saveStation(Station station) {
+//        if(station.getId() == null){
+//            Increment++;
+//            Station newStation = new Station(Integer.toString(Increment), station.getStationName(),
+//                    station.getStationCode(), station.getDistance());
+//            stationListing.put(newStation.getId(), newStation);
+//            return newStation;
+//        }
+//        stationListing.put(station.getId(), station);
+//        return station;
+//    }
 
     @Override
     public Station findStationByCode(String stationCode) {
@@ -45,8 +45,16 @@ public class StationRepository implements IStationRepository {
     }
 
     @Override
-    public Station save(Station entity) {
-        return null;
+    public Station save(Station station) {
+        if(station.getId() == null){
+            Increment++;
+            Station newStation = new Station(Integer.toString(Increment), station.getStationName(),
+                    station.getStationCode(), station.getDistance());
+            stationListing.put(newStation.getId(), newStation);
+            return newStation;
+        }
+        stationListing.put(station.getId(), station);
+        return station;
     }
 
     @Override

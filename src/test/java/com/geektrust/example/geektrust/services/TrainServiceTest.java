@@ -98,7 +98,7 @@ public class TrainServiceTest {
         //Arrange
         when(trainRepository.findTrainByName("abc")).thenReturn(trainA);
         when(trainRepository.findTrainByName("def")).thenReturn(trainB);
-        when(routeRepository.getAllRoutes()).thenReturn(routes);
+        when(routeRepository.findAll()).thenReturn(routes);
         //Act
         Train mergedTrain = trainService.mergeTrain("abc", "def");
         //Assert
@@ -123,7 +123,7 @@ public class TrainServiceTest {
     public void travel_train_test(){
         //Arrange
         when(trainRepository.findTrainByName("abc")).thenReturn(trainA);
-        when(routeRepository.findRouteByName("routeA")).thenReturn(routes.get(FIRST_INDEX));
+        when(routeRepository.findByName("routeA")).thenReturn(routes.get(FIRST_INDEX));
 
         //Act
         Train train = trainService.travel("abc", "routeA", "NDL");
@@ -163,7 +163,7 @@ public class TrainServiceTest {
 
         Train train = new Train("abc",listOfBoggies);
         Train toBeReturnedFromRepo = new Train("1","abc",listOfBoggies);
-        when(trainRepository.saveTrain(train)).thenReturn(toBeReturnedFromRepo);
+        when(trainRepository.save(train)).thenReturn(toBeReturnedFromRepo);
         
 
         List<String> boggiesToBeSaved = Arrays.asList("ENGINE","CHN","SLM","BLR");

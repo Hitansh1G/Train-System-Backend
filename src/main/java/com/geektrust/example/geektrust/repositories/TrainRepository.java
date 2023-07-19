@@ -24,17 +24,17 @@ public class TrainRepository implements ITrainRepository {
         return trainListing;
     }
 
-    @Override
-    public Train saveTrain(Train train) {
-        if(train.getId() == null){
-            Increment++;
-        Train newTrain = new Train(Integer.toString(Increment), train.getTrainName(), train.getBogies());
-        trainListing.put(newTrain.getId(), newTrain);
-        return newTrain;
-        }
-        trainListing.put(train.getId(), train);
-        return train;
-    }
+//    @Override
+//    public Train saveTrain(Train train) {
+//        if(train.getId() == null){
+//            Increment++;
+//        Train newTrain = new Train(Integer.toString(Increment), train.getTrainName(), train.getBogies());
+//        trainListing.put(newTrain.getId(), newTrain);
+//        return newTrain;
+//        }
+//        trainListing.put(train.getId(), train);
+//        return train;
+//    }
 
     @Override
     public Train findTrainByName(String trainName) {
@@ -51,8 +51,15 @@ public class TrainRepository implements ITrainRepository {
 
 
     @Override
-    public Train save(Train entity) {
-        return null;
+    public Train save(Train train) {
+        if(train.getId() == null){
+            Increment++;
+            Train newTrain = new Train(Integer.toString(Increment), train.getTrainName(), train.getBogies());
+            trainListing.put(newTrain.getId(), newTrain);
+            return newTrain;
+        }
+        trainListing.put(train.getId(), train);
+        return train;
     }
 
     @Override

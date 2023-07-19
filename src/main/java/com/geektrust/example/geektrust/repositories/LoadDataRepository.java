@@ -24,46 +24,46 @@ public class LoadDataRepository implements IDataRepository {
         LinkedList<Station> stationsOfRoute1 = new LinkedList<Station>();
 
         Route route1 = new Route("TRAIN_A", stationsOfRoute1, 1200);
-        iRouteRepository.saveRoute(route1);
+        iRouteRepository.save(route1);
 
         Station station = new Station("Chennai", "CHN", 0);
-        Station tempStation = iStationRepository.saveStation(station);
+        Station tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Salem", "SLM", 350);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Bangalore", "BLR", 550);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Kurnool", "KRN", 900);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Hyderabad", "HYB", 1200);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Nagpur", "NGP", 1600);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Itarsi", "ITJ", 1900);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Bhopal", "BPL", 2000);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("Agra", "AGA", 2500);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         station = new Station("New Delhi", "NDL", 2700);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute1.add(tempStation);
 
         
@@ -71,55 +71,55 @@ public class LoadDataRepository implements IDataRepository {
         // Saving the stations of other route
         LinkedList<Station> stationsOfRoute2 = new LinkedList<Station>();
         station = new Station("Trivandrum", "TVC", 0);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Shoranpur", "SRR", 300);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Mangalore", "MAQ", 600);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Madgaon", "MAO", 1000);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Pune", "PNE", 1400);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Hyderabad", "HYB", 2000);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Nagpur", "NGP", 2400);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Itarsi", "ITJ", 2700);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Bhopal", "BPL", 2800);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Patna", "PTA", 3800);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("New Jalpaiguri", "NJP", 4200);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         station = new Station("Guwahati", "GHY", 4700);
-        tempStation = iStationRepository.saveStation(station);
+        tempStation = iStationRepository.save(station);
         stationsOfRoute2.add(tempStation);
 
         Route route2 = new Route("TRAIN_B", stationsOfRoute2, 2000);
-        iRouteRepository.saveRoute(route2);
+        iRouteRepository.save(route2);
         
     }
 

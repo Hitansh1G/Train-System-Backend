@@ -21,7 +21,7 @@ public class ComparatorDTO implements Comparator<Bogie>{
         if(o2.getdestinationStation() == null){
             return 1;
         }
-        List<Route> routes = iRouteRepository.getAllRoutes();
+        List<Route> routes = iRouteRepository.findAll();
         // Find the dest station
         Station o1Station = o1.getdestinationStation();
         // Find in which route it belongs and get the distance of hyderabad in that

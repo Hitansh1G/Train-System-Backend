@@ -1,60 +1,50 @@
 package com.geektrust.example.geektrust.repositories;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import com.geektrust.example.geektrust.entities.Route;
 
 public class RouteRepository implements IRouteRepository {
-    private HashMap<String, Route> routeMapping;
+    private final HashMap<String, Route> routeListing;
     private Integer autoIncrement = 0;
 
     public RouteRepository() {
-        this.routeMapping = new HashMap<String, Route>();
+        this.routeListing = new HashMap<String, Route>();
     }
 
-    public RouteRepository(HashMap<String, Route> routeMapping){
-        this.routeMapping = routeMapping;
+    public RouteRepository(HashMap<String, Route> routeListing){
+        this.routeListing = routeListing;
     }
+    
 
     @Override
-    public void saveRoute(Route route) {
+    public Route findByName(String routeName) {
+        return routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst().get();
+    }
+
+
+    @Override
+    public Route save(Route route) {
         if(route.getId() == null){
             autoIncrement++;
             Route newRoute = new Route(Integer.toString(autoIncrement), route.getRouteName(), route.getStations(), route.getHyderabadDistance());
-            routeMapping.put(newRoute.getId(), newRoute);
-            return;
+            routeListing.put(newRoute.getId(), newRoute);
+            return route;
         }
-        routeMapping.put(route.getId(), route);
-    }
-
-    @Override
-    public Route findRouteByName(String routeName) {
-        Route route = routeMapping.entrySet().stream().filter(e -> e.getValue().getRouteName().equals(routeName))
-                .map(Map.Entry::getValue).findFirst().get();
+        routeListing.put(route.getId(), route);
         return route;
     }
 
     @Override
-    public List<Route> getAllRoutes() {
-        return routeMapping.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
-    }
-
-    @Override
-    public Route save(Route entity) {
-        return null;
-    }
-
-    @Override
     public List<Route> findAll() {
-        return null;
+        return new ArrayList<>(routeListing.values());
+
     }
 
     @Override
-    public Optional<Route> findById(String s) {
-        return Optional.empty();
+    public Optional<Route> findById(String routeName) {
+        return Optional.of(routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst().get());
+
     }
 
     @Override

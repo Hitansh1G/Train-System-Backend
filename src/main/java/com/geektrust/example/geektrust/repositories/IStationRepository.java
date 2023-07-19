@@ -4,7 +4,6 @@ import java.util.HashMap;
 import com.geektrust.example.geektrust.entities.Station;
 
 public interface IStationRepository extends CRUDRepository<Station,String>{
-    Station saveStation(Station station);
 
     Station findStationByCode(String stationCode); 
     

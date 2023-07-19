@@ -52,7 +52,7 @@ public class TrainService implements ITrainService {
         Train AB = new Train("TRAIN_AB", trainA_Bogies);
         iTrainRepository.deleteTrain(trainAName);
         iTrainRepository.deleteTrain(trainBName);
-        iTrainRepository.saveTrain(AB);
+        iTrainRepository.save(AB);
         return AB;
     }
 
@@ -61,7 +61,7 @@ public class TrainService implements ITrainService {
         // Find the train
         Train train = iTrainRepository.findTrainByName(trainName);
         // Find the route
-        Route route = iRouteRepository.findRouteByName(routeName);
+        Route route = iRouteRepository.findByName(routeName);
 
         // travel upto dest
         List<Bogie> boggiesToBeRemoved = GeneratedListDTO.generateListOfBoggiesToBeRemoved(route.getStations(), train.getBogies(), dest);
@@ -70,7 +70,7 @@ public class TrainService implements ITrainService {
         for(Bogie bogie :  boggiesToBeRemoved){
             train.deleteBoggy(bogie);
         }
-        iTrainRepository.saveTrain(train);
+        iTrainRepository.save(train);
         return train;
     }
 
@@ -78,7 +78,7 @@ public class TrainService implements ITrainService {
     public Train createTrain(String trainName, List<String> boggies) {
         LinkedList<Bogie> newBoggies = BoggiesDTO.createListOfBoggies(iBogieRepository, iStationRepository, boggies);
         Train newTrain = new Train(trainName, newBoggies);
-        Train savedTrain = iTrainRepository.saveTrain(newTrain);
+        Train savedTrain = iTrainRepository.save(newTrain);
         return savedTrain;
     }
     
