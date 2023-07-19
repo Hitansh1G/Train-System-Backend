@@ -1,7 +1,10 @@
 package com.geektrust.example.geektrust.repositories;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import com.geektrust.example.geektrust.entities.Train;
 
 public class TrainRepository implements ITrainRepository {
@@ -47,5 +50,38 @@ public class TrainRepository implements ITrainRepository {
     }
 
 
-    
+    @Override
+    public Train save(Train entity) {
+        return null;
+    }
+
+    @Override
+    public List<Train> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Train> findById(String s) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(String s) {
+        return false;
+    }
+
+    @Override
+    public void delete(Train entity) {
+
+    }
+
+    @Override
+    public void deleteById(String s) {
+
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
 }

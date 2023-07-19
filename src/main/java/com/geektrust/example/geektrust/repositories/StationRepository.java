@@ -1,7 +1,10 @@
 package com.geektrust.example.geektrust.repositories;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import com.geektrust.example.geektrust.entities.Station;
 
 public class StationRepository implements IStationRepository {
@@ -40,5 +43,39 @@ public class StationRepository implements IStationRepository {
     public HashMap<String, Station> getStationListing() {
         return stationListing;
     }
-    
+
+    @Override
+    public Station save(Station entity) {
+        return null;
+    }
+
+    @Override
+    public List<Station> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Station> findById(String s) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(String s) {
+        return false;
+    }
+
+    @Override
+    public void delete(Station entity) {
+
+    }
+
+    @Override
+    public void deleteById(String s) {
+
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
 }

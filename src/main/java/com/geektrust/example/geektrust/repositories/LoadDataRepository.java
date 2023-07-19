@@ -3,7 +3,10 @@ package com.geektrust.example.geektrust.repositories;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
 
+import javax.xml.crypto.Data;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
 public class LoadDataRepository implements IDataRepository {
     private final IStationRepository iStationRepository;
@@ -115,5 +118,39 @@ public class LoadDataRepository implements IDataRepository {
         iRouteRepository.saveRoute(route2);
         
     }
-    
+
+    @Override
+    public Data save(Data entity) {
+        return null;
+    }
+
+    @Override
+    public List<Data> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Data> findById(String s) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(String s) {
+        return false;
+    }
+
+    @Override
+    public void delete(Data entity) {
+
+    }
+
+    @Override
+    public void deleteById(String s) {
+
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
 }

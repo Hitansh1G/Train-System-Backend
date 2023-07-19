@@ -3,6 +3,7 @@ package com.geektrust.example.geektrust.repositories;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import com.geektrust.example.geektrust.entities.Route;
 
@@ -40,5 +41,39 @@ public class RouteRepository implements IRouteRepository {
     public List<Route> getAllRoutes() {
         return routeMapping.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
     }
-    
+
+    @Override
+    public Route save(Route entity) {
+        return null;
+    }
+
+    @Override
+    public List<Route> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Route> findById(String s) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(String s) {
+        return false;
+    }
+
+    @Override
+    public void delete(Route entity) {
+
+    }
+
+    @Override
+    public void deleteById(String s) {
+
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
 }
