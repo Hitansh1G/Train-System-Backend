@@ -7,9 +7,9 @@ import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
 import com.geektrust.example.geektrust.repositories.IRouteRepository;
 
-public class SortBoggies implements Comparator<Bogie>{
+public class ComparatorDTO implements Comparator<Bogie>{
     IRouteRepository iRouteRepository;
-    public SortBoggies(IRouteRepository iRouteRepository){
+    public ComparatorDTO(IRouteRepository iRouteRepository){
         this.iRouteRepository = iRouteRepository;
     }
 

@@ -8,5 +8,5 @@ public interface IStationRepository {
 
     Station findStationByCode(String stationCode); 
     
-    HashMap<String, Station> getStationMap();
+    HashMap<String, Station> getStationListing();
 }

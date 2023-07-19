@@ -3,15 +3,15 @@ package com.geektrust.example.geektrust.repositories;
 import java.util.HashMap;
 import com.geektrust.example.geektrust.entities.Bogie;
 
-public class BoggyRepository implements IBoggyRepository {
+public class BogieRepository implements IBogieRepository {
     private HashMap<String, Bogie> boggyMapping;
     private Integer autoIncrement = 0;
 
-    public BoggyRepository() {
+    public BogieRepository() {
         this.boggyMapping = new HashMap<String, Bogie>();
     }
 
-    public BoggyRepository(HashMap<String, Bogie> boggyMapping){
+    public BogieRepository(HashMap<String, Bogie> boggyMapping){
         this.boggyMapping = boggyMapping;
     }
 

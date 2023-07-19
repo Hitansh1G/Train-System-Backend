@@ -1,16 +1,15 @@
-package com.geektrust.example.geektrust.repositories.data;
+package com.geektrust.example.geektrust.repositories;
 
-import java.util.LinkedList;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
-import com.geektrust.example.geektrust.repositories.IRouteRepository;
-import com.geektrust.example.geektrust.repositories.IStationRepository;
 
-public class LoadData implements IData{
+import java.util.LinkedList;
+
+public class LoadDataRepository implements IDataRepository {
     private final IStationRepository iStationRepository;
     private final IRouteRepository iRouteRepository;
 
-    public LoadData(IStationRepository iStationRepository, IRouteRepository iRouteRepository) {
+    public LoadDataRepository(IStationRepository iStationRepository, IRouteRepository iRouteRepository) {
         this.iStationRepository = iStationRepository;
         this.iRouteRepository = iRouteRepository;
     }

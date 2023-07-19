@@ -12,7 +12,7 @@ import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
 import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.exceptions.JourneyEndedException;
-import com.geektrust.example.geektrust.repositories.BoggyRepository;
+import com.geektrust.example.geektrust.repositories.BogieRepository;
 import com.geektrust.example.geektrust.repositories.RouteRepository;
 import com.geektrust.example.geektrust.repositories.StationRepository;
 import com.geektrust.example.geektrust.repositories.TrainRepository;
@@ -48,7 +48,7 @@ public class TrainServiceTest {
     StationRepository stationRepository;
 
     @Mock
-    BoggyRepository boggyRepository;
+    BogieRepository boggyRepository;
 
 
     @InjectMocks

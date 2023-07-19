@@ -19,15 +19,14 @@ public class RouteRepository implements IRouteRepository {
     }
 
     @Override
-    public Route saveRoute(Route route) {
+    public void saveRoute(Route route) {
         if(route.getId() == null){
             autoIncrement++;
             Route newRoute = new Route(Integer.toString(autoIncrement), route.getRouteName(), route.getStations(), route.getHyderabadDistance());
             routeMapping.put(newRoute.getId(), newRoute);
-            return newRoute;
+            return;
         }
         routeMapping.put(route.getId(), route);
-        return route;
     }
 
     @Override

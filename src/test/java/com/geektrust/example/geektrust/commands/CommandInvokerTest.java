@@ -17,7 +17,7 @@ public class CommandInvokerTest {
     private CommandInvoker commandInvoker;
 
     @Mock
-    LoadDataCommand loadDataCommand;
+    DataCommand dataCommand;
 
     @Mock
     LoadTrainDataCommand loadTrainDataCommand;
@@ -31,7 +31,7 @@ public class CommandInvokerTest {
     @BeforeEach
     void setup(){
         commandInvoker = new CommandInvoker();
-        commandInvoker.register("LOAD_DATA", loadDataCommand);
+        commandInvoker.register("LOAD_DATA", dataCommand);
         commandInvoker.register("TRAIN_A", loadTrainDataCommand);
         commandInvoker.register("TRAIN_B", loadTrainDataCommand);
         commandInvoker.register("TRAVEL", travelCommand);
@@ -48,7 +48,7 @@ public class CommandInvokerTest {
         commandInvoker.executeCommand("MERGE", anyList());
 
         //Assert
-        verify(loadDataCommand).execute(anyList());
+        verify(dataCommand).execute(anyList());
         verify(loadTrainDataCommand).execute(anyList());
         verify(travelCommand).execute(anyList());
         verify(mergeTrainCommand).execute(anyList());
