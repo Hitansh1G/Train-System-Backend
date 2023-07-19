@@ -35,21 +35,21 @@ public class TrainService implements ITrainService {
         Train trainB = iTrainRepository.findTrainByName(trainBName);
 
         //Find the list of boggies
-        LinkedList<Bogie> boggiesOfA = trainA.getBoggies();
-        LinkedList<Bogie> boggiesOfB = trainB.getBoggies();
-        if (boggiesOfA.isEmpty() && boggiesOfB.isEmpty()) {
+        LinkedList<Bogie> trainA_Bogies = trainA.getBogies();
+        LinkedList<Bogie> trainB_Bogies = trainB.getBogies();
+        if (trainA_Bogies.isEmpty() && trainB_Bogies.isEmpty()) {
             throw new JourneyEndedException("JOURNEY_ENDED");
         }
-        boggiesOfA.addAll(boggiesOfB);
+        trainA_Bogies.addAll(trainB_Bogies);
 
 
-        Collections.sort(boggiesOfA, new ComparatorDTO(iRouteRepository));
+        trainA_Bogies.sort(new ComparatorDTO(iRouteRepository));
 
         //Remove Hyderabad from the list of boggies in merged train
-        while(boggiesOfA.getLast().getdestinationStation()!=null && boggiesOfA.getLast().getdestinationStation().getStationCode().equals("HYB")){
-            boggiesOfA.removeLast();
+        while(trainA_Bogies.getLast().getdestinationStation()!=null && trainA_Bogies.getLast().getdestinationStation().getStationCode().equals("HYB")){
+            trainA_Bogies.removeLast();
         }
-        Train AB = new Train("TRAIN_AB", boggiesOfA);
+        Train AB = new Train("TRAIN_AB", trainA_Bogies);
         iTrainRepository.deleteTrain(trainAName);
         iTrainRepository.deleteTrain(trainBName);
         iTrainRepository.saveTrain(AB);
@@ -64,7 +64,7 @@ public class TrainService implements ITrainService {
         Route route = iRouteRepository.findRouteByName(routeName);
 
         // travel upto dest
-        List<Bogie> boggiesToBeRemoved = GeneratedListDTO.generateListOfBoggiesToBeRemoved(route.getStations(), train.getBoggies(), dest);
+        List<Bogie> boggiesToBeRemoved = GeneratedListDTO.generateListOfBoggiesToBeRemoved(route.getStations(), train.getBogies(), dest);
 
 
         for(Bogie bogie :  boggiesToBeRemoved){

@@ -102,7 +102,7 @@ public class TrainServiceTest {
         //Act
         Train mergedTrain = trainService.mergeTrain("abc", "def");
         //Assert
-        assertEquals(6,mergedTrain.getBoggies().size() );
+        assertEquals(6,mergedTrain.getBogies().size() );
 
     } 
     
@@ -129,7 +129,7 @@ public class TrainServiceTest {
         Train train = trainService.travel("abc", "routeA", "NDL");
 
         //Assert
-        assertEquals(1, train.getBoggies().size());
+        assertEquals(1, train.getBogies().size());
 
     }
 

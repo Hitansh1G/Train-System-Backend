@@ -25,7 +25,7 @@ public class TrainRepository implements ITrainRepository {
     public Train saveTrain(Train train) {
         if(train.getId() == null){
             Increment++;
-        Train newTrain = new Train(Integer.toString(Increment), train.getTrainName(), train.getBoggies());
+        Train newTrain = new Train(Integer.toString(Increment), train.getTrainName(), train.getBogies());
         trainListing.put(newTrain.getId(), newTrain);
         return newTrain;
         }

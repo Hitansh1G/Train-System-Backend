@@ -5,17 +5,17 @@ import java.util.List;
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Train;
 
-public class PrintTrain {
+public class PrintTrainDTO {
     public static void printTrain(Train t, String arrivalOrDeparture){
-        List<String> boggies = new ArrayList<String>();
-        for(Bogie bogie :t.getBoggies()){
+        List<String> bogies = new ArrayList<String>();
+        for(Bogie bogie :t.getBogies()){
             if(bogie.getdestinationStation() == null){
-                boggies.add("ENGINE");
+                bogies.add("ENGINE");
             }else{
-                boggies.add(bogie.getdestinationStationCode());
+                bogies.add(bogie.getdestinationStationCode());
             }
         }
-        System.out.print(arrivalOrDeparture + " "+ t.getTrainName() + " " + String.join(" ",boggies));
+        System.out.print(arrivalOrDeparture + " "+ t.getTrainName() + " " + String.join(" ",bogies));
         System.out.println();
     }    
 }

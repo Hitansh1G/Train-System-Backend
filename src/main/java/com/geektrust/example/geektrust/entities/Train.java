@@ -16,7 +16,7 @@ public class Train extends BaseEntitiy {
         this.boggies = boggies;
     }
 
-    public LinkedList<Bogie> getBoggies() {
+    public LinkedList<Bogie> getBogies() {
         return boggies;
     }
 

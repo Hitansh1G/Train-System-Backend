@@ -2,7 +2,7 @@ package com.geektrust.example.geektrust.commands;
 
 import java.util.List;
 import com.geektrust.example.geektrust.entities.Train;
-import com.geektrust.example.geektrust.dto.PrintTrain;
+import com.geektrust.example.geektrust.dto.PrintTrainDTO;
 import com.geektrust.example.geektrust.services.ITrainService;
 
 public class MergeTrainCommand implements ICommand {
@@ -21,7 +21,7 @@ public class MergeTrainCommand implements ICommand {
             String trainA = tokens.get(FIRST_INDEX);
             String trainB = tokens.get(SECOND_INDEX);
             Train train = iTrainService.mergeTrain(trainA, trainB);
-            PrintTrain.printTrain(train, "DEPARTURE");
+            PrintTrainDTO.printTrain(train, "DEPARTURE");
         } catch (Exception e) {
             e.printStackTrace();
         }
