@@ -7,23 +7,22 @@ import java.util.Optional;
 import com.geektrust.example.geektrust.entities.Bogie;
 
 public class BogieRepository implements IBogieRepository {
-    private HashMap<String, Bogie> bogieListing;
-    private Integer autoIncrement = 0;
+    private final HashMap<String, Bogie> bogieListing;
 
     public BogieRepository() {
-        this.bogieListing = new HashMap<String, Bogie>();
+        this.bogieListing = new HashMap<>();
     }
 
-    public BogieRepository(HashMap<String, Bogie> bogieListing){
-        this.bogieListing = bogieListing;
-    }
+//    public BogieRepository(HashMap<String, Bogie> bogieListing){
+//        this.bogieListing = bogieListing;
+//    }
 
-
+    private Integer identification = 0;
     @Override
     public Bogie save(Bogie bogie) {
         if(bogie.getId() == null){
-            autoIncrement++;
-            Bogie newBogie = new Bogie(Integer.toString(autoIncrement), bogie.getdestinationStation());
+            identification++;
+            Bogie newBogie = new Bogie(Integer.toString(identification), bogie.getdestinationStation());
             bogieListing.put(newBogie.getId(), newBogie);
             return newBogie;
         }
@@ -35,6 +34,11 @@ public class BogieRepository implements IBogieRepository {
     @Override
     public HashMap<String, Bogie> getBogieListing() {
         return bogieListing;
+    }
+
+    @Override
+    public long count() {
+        return bogieListing.size();
     }
 
 
@@ -63,8 +67,5 @@ public class BogieRepository implements IBogieRepository {
 
     }
 
-    @Override
-    public long count() {
-        return bogieListing.size();
-    }
+
 }

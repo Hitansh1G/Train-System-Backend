@@ -18,10 +18,10 @@ public class TravelCommand implements ICommand {
     public void execute(List<String> tokens) {
         try {
             int FIRST = 0;
-            String trainName = tokens.get(FIRST);
             int SECOND = 1;
-            String routeName = tokens.get(SECOND);
             int THIRD = 2;
+            String trainName = tokens.get(FIRST);
+            String routeName = tokens.get(SECOND);
             String destination = tokens.get(THIRD);
             Train train = iTrainService.travel(trainName, routeName, destination);
             PrintTrainDTO.printTrain(train, ARRIVAL);

@@ -1,7 +1,6 @@
 package com.geektrust.example.geektrust.repositories;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import com.geektrust.example.geektrust.entities.Route;
 
 public class RouteRepository implements IRouteRepository {
@@ -9,12 +8,12 @@ public class RouteRepository implements IRouteRepository {
     private Integer autoIncrement = 0;
 
     public RouteRepository() {
-        this.routeListing = new HashMap<String, Route>();
+        this.routeListing = new HashMap<>();
     }
 
-    public RouteRepository(HashMap<String, Route> routeListing){
-        this.routeListing = routeListing;
-    }
+//    public RouteRepository(HashMap<String, Route> routeListing){
+//        this.routeListing = routeListing;
+//    }
     
 
     @Override

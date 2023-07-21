@@ -34,9 +34,7 @@ public class Route extends BaseEntitiy {
 
     public boolean isStationPresent(Station stn) {
         for(Station station:stations){
-            if(station.equals(stn)){
-                return true;
-            }
+            if(station.equals(stn)==true) return true;
         }
         return false;
     }

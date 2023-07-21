@@ -40,29 +40,4 @@ public class Train extends BaseEntitiy {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Train other = (Train) obj;
-        if (bogies == null && other.bogies != null) {
-            return false;
-        }
-        assert bogies != null;
-        if (!bogies.equals(other.bogies))
-            return false;
-        
-        if (trainName == null && other.trainName != null) {
-            return false;
-        }
-        assert trainName != null;
-        if(!trainName.equals(other.trainName))
-            return false;
-            
-        return true;
-    }    
 }

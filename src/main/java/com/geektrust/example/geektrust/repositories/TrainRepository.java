@@ -2,7 +2,6 @@ package com.geektrust.example.geektrust.repositories;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import com.geektrust.example.geektrust.entities.Train;
@@ -15,9 +14,9 @@ public class TrainRepository implements ITrainRepository {
         this.trainListing = new HashMap<String, Train>();
     }
 
-    public TrainRepository(HashMap<String,Train> trainListing){
-        this.trainListing = trainListing;
-    }
+//    public TrainRepository(HashMap<String,Train> trainListing){
+//        this.trainListing = trainListing;
+//    }
 
     @Override
     public HashMap<String, Train> getTrainListing() {

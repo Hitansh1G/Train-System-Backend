@@ -29,16 +29,6 @@ public class Station extends BaseEntitiy {
     public int getDistance() {
         return distance;
     }
-    
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Station))
-            return false;
-        Station station = (Station) o;
-        return getId().equals(station.getId());
-    }
 
     @Override
     public int hashCode() {

@@ -6,7 +6,7 @@ import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.exceptions.JourneyEndedException;
-import com.geektrust.example.geektrust.dtos.BoggiesDTO;
+import com.geektrust.example.geektrust.dtos.BogiesDTO;
 import com.geektrust.example.geektrust.dtos.GeneratedListDTO;
 import com.geektrust.example.geektrust.dtos.ComparatorDTO;
 import com.geektrust.example.geektrust.repositories.IBogieRepository;
@@ -83,7 +83,7 @@ public class TrainService implements ITrainService {
 
     @Override
     public Train createTrain(String trainName, List<String> bogies) {
-        LinkedList<Bogie> newBogies = BoggiesDTO.createListOfBogies(iBogieRepository, iStationRepository, bogies);
+        LinkedList<Bogie> newBogies = BogiesDTO.createListOfBogies(iBogieRepository, iStationRepository, bogies);
         Train newTrain = new Train(trainName, newBogies);
         return iTrainRepository.save(newTrain);
     }

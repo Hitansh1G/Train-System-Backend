@@ -9,7 +9,7 @@ import static com.geektrust.example.geektrust.Util.Constants.ENGINE;
 
 public class PrintTrainDTO {
     public static void printTrain(Train t, String arrivalOrDeparture){
-        List<String> bogies = new ArrayList<String>();
+        List<String> bogies = new ArrayList<>();
         for(Bogie bogie :t.getBogies()){
             if(bogie.getdestinationStation() == null){
                 bogies.add(ENGINE);

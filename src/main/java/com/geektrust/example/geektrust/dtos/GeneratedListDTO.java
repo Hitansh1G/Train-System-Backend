@@ -15,7 +15,7 @@ public class GeneratedListDTO {
         }
     }
     public static List<Bogie> generateBogiesToRemoved(LinkedList<Station> stations, LinkedList<Bogie> bogies, String dest ){
-        List<Bogie> bogiesToRemoved = new LinkedList<Bogie>();
+        List<Bogie> bogiesToRemoved = new LinkedList<>();
         for (Station stn : stations) {
             if (stn.getStationCode().equals(dest)) {
                 break;
