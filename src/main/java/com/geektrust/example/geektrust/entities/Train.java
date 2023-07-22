@@ -28,7 +28,7 @@ public class Train extends BaseEntitiy {
         bogies.remove(bogie);
     }
 
-    public void addBoggy(Bogie bogie) {
+    public void addBogie(Bogie bogie) {
         bogies.add(bogie);
     }
 

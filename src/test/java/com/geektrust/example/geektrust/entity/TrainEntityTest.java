@@ -30,10 +30,12 @@ public class TrainEntityTest {
     public void add_bogie_in_train(){
         //Arrange
         Bogie bogie = new Bogie("3",new Station("2", "New Jalpaiguri", "NJP", 3000));
+        Bogie bogie1 = new Bogie("4",new Station("3", "KURNOOL", "KRN", 900));
         //Act
-        train.addBoggy(bogie);
+        train.addBogie(bogie);
+        train.addBogie(bogie1);
         //Assert
-        assertEquals(3, train.getBogies().size());
+        assertEquals(4, train.getBogies().size());
     }
 
     @Test
@@ -44,8 +46,8 @@ public class TrainEntityTest {
         Bogie bogie1 = new Bogie("10", new Station("2", "New Jalpaiguri", "NJP", 1000));
 
         //Act
-        train.addBoggy(bogie);
-        train.addBoggy(bogie1);
+        train.addBogie(bogie);
+        train.addBogie(bogie1);
 
         train.deleteBogie(bogie);
         train.deleteBogie(bogie1);
