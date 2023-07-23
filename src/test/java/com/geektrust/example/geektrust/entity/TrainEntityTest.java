@@ -26,7 +26,7 @@ public class TrainEntityTest {
     }
 
     @Test
-    @DisplayName("#1 Add bogie test")
+    @DisplayName("1 Add bogie test")
     public void add_bogie_in_train(){
         //Arrange
         Bogie bogie = new Bogie("3",new Station("2", "New Jalpaiguri", "NJP", 3000));
@@ -39,7 +39,7 @@ public class TrainEntityTest {
     }
 
     @Test
-    @DisplayName("#2 Delete bogie test")
+    @DisplayName("2 Delete bogie test")
     public void delete_bogie_in_train(){
         //Arrange
         Bogie bogie = new Bogie("9", new Station("3", "Hydrabad", "HYD", 0));
