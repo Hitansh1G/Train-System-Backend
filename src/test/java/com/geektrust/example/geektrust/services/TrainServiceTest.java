@@ -64,8 +64,8 @@ public class TrainServiceTest {
         LinkedList<Bogie> bogiesTrainB = new LinkedList<Bogie>(){
             {
                 add(new Bogie("3", null));
-                add(new Bogie("5", new Station("3", "aa", "aa", 2700)));
-                add(new Bogie("6",new Station("4", "bbb", "bbb", 4200)));
+                add(new Bogie("3", new Station("3", "aa", "aa", 2700)));
+                add(new Bogie("4",new Station("4", "bbb", "bbb", 4200)));
             }
         };
         trainB = new Train("2","TrainB", bogiesTrainB);
@@ -80,8 +80,8 @@ public class TrainServiceTest {
 
         LinkedList<Station> stationsRouteB = new LinkedList<Station>(){
             {
-                add(new Station("3", "Itarsi", "ITJ", 2700));
-                add(new Station("4", "New Jalpaiguri", "NJP", 4200));
+                add(new Station("3", "DELHI", "DLH", 2700));
+                add(new Station("4", "MUMBAI", "MBI", 4200));
             }
         };
         Route routeB = new Route("2", "RouteB", stationsRouteB, 2000);
@@ -90,44 +90,48 @@ public class TrainServiceTest {
         routes.add(routeB);
     }
 
+
+
+
+
     @Test
-    @DisplayName("#1 Merge Train test")
-    public void merge_train_test(){
+    @DisplayName("1st Travel Train test")
+    public void travel_train_test(){
         //Arrange
-        when(trainRepository.findTrainByName("qwe")).thenReturn(trainA);
-        when(trainRepository.findTrainByName("rty")).thenReturn(trainB);
-        when(routeRepository.findAll()).thenReturn(routes);
+        when(trainRepository.findTrainByName("abc")).thenReturn(trainA);
+        when(routeRepository.findByName("routeA")).thenReturn(routes.get(FIRST));
+
         //Act
-        Train mergedTrain = trainService.mergeTrain("qwe", "rty");
+        Train train = trainService.travel("abc", "routeA", "NDL");
+
         //Assert
-        assertEquals(6,mergedTrain.getBogies().size() );
+        assertEquals(3, train.getBogies().size());
 
     }
 
     @Test
-    @DisplayName("#2 Merge train command ")
+    @DisplayName("2nd Merge train command ")
     public void merge_train_must_throw_exception_if_boggy_size0(){
-         //Arrange
-         LinkedList<Bogie> bogies = new LinkedList<Bogie>();
-         when(trainRepository.findTrainByName("qwe")).thenReturn(new Train("9", "qwe", bogies));
-         when(trainRepository.findTrainByName("rty")).thenReturn(new Train("7", "rty", bogies));
+        //Arrange
+        LinkedList<Bogie> bogies = new LinkedList<Bogie>();
+        when(trainRepository.findTrainByName("abc")).thenReturn(new Train("1", "abc", bogies));
+        when(trainRepository.findTrainByName("def")).thenReturn(new Train("2", "def", bogies));
         //Assert
         assertThrows(JourneyEndedException.class,() -> trainService.mergeTrain("abc", "def"));
 
     }
 
     @Test
-    @DisplayName("#3 Travel Train test")
-    public void travel_train_test(){
+    @DisplayName("3rd Merge Train test")
+    public void merge_train_test(){
         //Arrange
-        when(trainRepository.findTrainByName("bbb")).thenReturn(trainA);
-        when(routeRepository.findByName("routeA")).thenReturn(routes.get(FIRST));
-
+        when(trainRepository.findTrainByName("abc")).thenReturn(trainA);
+        when(trainRepository.findTrainByName("def")).thenReturn(trainB);
+        when(routeRepository.findAll()).thenReturn(routes);
         //Act
-        Train train = trainService.travel("aaa", "routeA", "aaa");
-
+        Train mergedTrain = trainService.mergeTrain("abc", "def");
         //Assert
-        assertEquals(3, train.getBogies().size());
+        assertEquals(6,mergedTrain.getBogies().size() );
 
     }
 
