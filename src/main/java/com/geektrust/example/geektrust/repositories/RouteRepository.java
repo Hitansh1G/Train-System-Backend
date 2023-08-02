@@ -3,22 +3,20 @@ package com.geektrust.example.geektrust.repositories;
 import java.util.*;
 import com.geektrust.example.geektrust.entities.Route;
 
+import static com.geektrust.example.geektrust.Constants.Constants.RANDOM;
+import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
+
 public class RouteRepository implements IRouteRepository {
     private final HashMap<String, Route> routeListing;
-    private Integer autoIncrement = 0;
+    private Integer autoIncrement = ZERO;
 
     public RouteRepository() {
         this.routeListing = new HashMap<>();
     }
 
-//    public RouteRepository(HashMap<String, Route> routeListing){
-//        this.routeListing = routeListing;
-//    }
-    
-
     @Override
     public Route findByName(String routeName) {
-        return routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst().get();
+        return routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst().orElse(null);
     }
 
 
@@ -26,7 +24,7 @@ public class RouteRepository implements IRouteRepository {
     public Route save(Route route) {
         if (route.getId() == null) {
             autoIncrement++;
-            Route newRoute = new Route("R" + autoIncrement, route.getRouteName(), route.getStations(), route.getHyderabadDistance());
+            Route newRoute = new Route(RANDOM + autoIncrement, route.getRouteName(), route.getStations(), route.getHyderabadDistance());
             routeListing.put(newRoute.getId(), newRoute);
             return newRoute;
         }
@@ -43,7 +41,7 @@ public class RouteRepository implements IRouteRepository {
 
     @Override
     public Optional<Route> findById(String routeName) {
-        return Optional.of(routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst().get());
+        return routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst();
 
     }
 

@@ -14,7 +14,7 @@ import com.geektrust.example.geektrust.repositories.IRouteRepository;
 import com.geektrust.example.geektrust.repositories.IStationRepository;
 import com.geektrust.example.geektrust.repositories.ITrainRepository;
 
-import static com.geektrust.example.geektrust.Constants.Constants.JOURNEY_ENDED;
+import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class TrainService implements ITrainService {
     private final IRouteRepository iRouteRepository;
@@ -50,12 +50,12 @@ public class TrainService implements ITrainService {
 
         // Remove Hyderabad from the list of bogies in the merged train
         while (!trainA_Bogies.isEmpty() && trainA_Bogies.getLast().getdestinationStation() != null
-                && trainA_Bogies.getLast().getdestinationStation().getStationCode().equals("HYB")) {
+                && trainA_Bogies.getLast().getdestinationStation().getStationCode().equals(HYB)) {
             trainA_Bogies.removeLast();
         }
 
         // Create a new Train object with merged bogies
-        Train mergedTrain = new Train("TRAIN_AB", trainA_Bogies);
+        Train mergedTrain = new Train(MERGED_TRAIN, trainA_Bogies);
 
         // Delete the original trainA and trainB from the repository
         iTrainRepository.deleteTrain(trainAName);
@@ -82,10 +82,10 @@ public class TrainService implements ITrainService {
     }
 
     @Override
-    public Train createTrain(String trainName, List<String> bogies) {
+    public void createTrain(String trainName, List<String> bogies) {
         LinkedList<Bogie> newBogies = BogiesDTO.createListOfBogies(iBogieRepository, iStationRepository, bogies);
         Train newTrain = new Train(trainName, newBogies);
-        return iTrainRepository.save(newTrain);
+        iTrainRepository.save(newTrain);
     }
     
 }

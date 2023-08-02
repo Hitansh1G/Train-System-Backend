@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import com.geektrust.example.geektrust.entities.Bogie;
 
+import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
+
 public class BogieRepository implements IBogieRepository {
     private final HashMap<String, Bogie> bogieListing;
 
@@ -13,11 +15,7 @@ public class BogieRepository implements IBogieRepository {
         this.bogieListing = new HashMap<>();
     }
 
-//    public BogieRepository(HashMap<String, Bogie> bogieListing){
-//        this.bogieListing = bogieListing;
-//    }
-
-    private Integer identification = 0;
+    private Integer identification = ZERO;
     @Override
     public Bogie save(Bogie bogie) {
         if(bogie.getId() == null){

@@ -8,5 +8,5 @@ public interface ITrainService {
 
     Train travel(String trainName, String routeName, String dest);
 
-    Train createTrain(String trainName, List<String> boggies);    
+    void createTrain(String trainName, List<String> bogies);
 }

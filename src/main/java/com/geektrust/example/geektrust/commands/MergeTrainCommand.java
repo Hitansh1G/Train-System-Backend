@@ -17,14 +17,11 @@ public class MergeTrainCommand implements ICommand {
     @Override
     public void execute(List<String> tokens) {
         try {
-            int FIRST = 0;
-            String trainA = tokens.get(FIRST);
-            int SECOND = 1;
-            String trainB = tokens.get(SECOND);
+            String trainA = tokens.get(0);
+            String trainB = tokens.get(1);
             Train train = iTrainService.mergeTrain(trainA, trainB);
             PrintTrainDTO.printTrain(train, DEPARTURE);
-        } catch (Exception e) {
-//            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         
     }

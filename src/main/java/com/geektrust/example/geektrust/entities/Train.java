@@ -2,6 +2,9 @@ package com.geektrust.example.geektrust.entities;
 
 import java.util.LinkedList;
 
+import static com.geektrust.example.geektrust.Constants.Constants.PRIME;
+import static com.geektrust.example.geektrust.Constants.Constants.TEMP;
+
 public class Train extends BaseEntitiy {
     private final LinkedList<Bogie> bogies;
     private final String trainName;
@@ -34,9 +37,8 @@ public class Train extends BaseEntitiy {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        int result = TEMP;
+        result = PRIME * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 

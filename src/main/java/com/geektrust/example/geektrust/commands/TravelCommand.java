@@ -17,17 +17,16 @@ public class TravelCommand implements ICommand {
     @Override
     public void execute(List<String> tokens) {
         try {
-            int FIRST = 0;
-            int SECOND = 1;
-            int THIRD = 2;
-            String trainName = tokens.get(FIRST);
-            String routeName = tokens.get(SECOND);
-            String destination = tokens.get(THIRD);
+//            int FIRST = 0;
+//            int SECOND = 1;
+//            int THIRD = 2;
+            String trainName = tokens.get(0);
+            String routeName = tokens.get(1);
+            String destination = tokens.get(2);
             Train train = iTrainService.travel(trainName, routeName, destination);
             PrintTrainDTO.printTrain(train, ARRIVAL);
-        } catch (Exception e) {
-//            e.printStackTrace();
-        }        
+        } catch (Exception ignored) {
+        }
     }
     
 }

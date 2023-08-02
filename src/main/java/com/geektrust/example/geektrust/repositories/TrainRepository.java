@@ -6,17 +6,16 @@ import java.util.Optional;
 
 import com.geektrust.example.geektrust.entities.Train;
 
+import static com.geektrust.example.geektrust.Constants.Constants.FALSE;
+import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
+
 public class TrainRepository implements ITrainRepository {
     private final HashMap<String, Train> trainListing;
-    private Integer Increment = 0;
+    private Integer Increment = ZERO;
 
     public TrainRepository() {
-        this.trainListing = new HashMap<String, Train>();
+        this.trainListing = new HashMap<>();
     }
-
-//    public TrainRepository(HashMap<String,Train> trainListing){
-//        this.trainListing = trainListing;
-//    }
 
     @Override
     public HashMap<String, Train> getTrainListing() {
@@ -25,7 +24,7 @@ public class TrainRepository implements ITrainRepository {
 
     @Override
     public Train findTrainByName(String trainName) {
-        return trainListing.values().stream().filter(train -> train.getTrainName().equals(trainName)).findFirst().get();
+        return trainListing.values().stream().filter(train -> train.getTrainName().equals(trainName)).findFirst(). orElse(null);
     }
 
 
@@ -66,14 +65,16 @@ public class TrainRepository implements ITrainRepository {
     @Override
     public void deleteTrain(String trainName) {
         // Find the train
-        Train train = trainListing.values().stream().filter(v -> v.getTrainName().equals(trainName)).findFirst().get();
+        Train train = trainListing.values().stream().filter(v -> v.getTrainName().equals(trainName)).findFirst(). orElse(null);
+        assert train != null;
         trainListing.remove(train.getId());
 
     }
 
     @Override
     public void delete(Train trainName) {
-        Train train = trainListing.values().stream().filter(v -> false).findFirst().get();
+        Train train = trainListing.values().stream().filter(v -> FALSE).findFirst(). orElse(null);
+        assert train != null;
         trainListing.remove(train.getId());
     }
 

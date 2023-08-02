@@ -2,25 +2,24 @@ package com.geektrust.example.geektrust.repositories;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import com.geektrust.example.geektrust.entities.Station;
 
+import static com.geektrust.example.geektrust.Constants.Constants.RANDOM;
+import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
+
 public class StationRepository implements IStationRepository {
     private final HashMap<String, Station> stationListing;
-    private Integer Increment = 0;
+    private Integer Increment = ZERO;
 
     public StationRepository() {
-        this.stationListing = new HashMap<String, Station>();
+        this.stationListing = new HashMap<>();
     }
 
-    public StationRepository(HashMap<String,Station> stationListing){
-        this.stationListing = stationListing;
-    }
     @Override
     public Station findStationByCode(String stationCode) {
-        return stationListing.values().stream().filter(station -> station.getStationCode().equals(stationCode)).findFirst().get();
+        return stationListing.values().stream().filter(station -> station.getStationCode().equals(stationCode)).findFirst(). orElse(null);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class StationRepository implements IStationRepository {
     public Station save(Station station) {
         if (station.getId() == null) {
             Increment++;
-            Station newStation = new Station("S" + Increment, station.getStationName(), station.getStationCode(), station.getDistance());
+            Station newStation = new Station(RANDOM + Increment, station.getStationName(), station.getStationCode(), station.getDistance());
             stationListing.put(newStation.getId(), newStation);
             return newStation;
         }
