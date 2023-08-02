@@ -23,7 +23,7 @@ public class App {
 			String line = reader.readLine();
 			while (line != null) {
 				List<String> tokens = Arrays.asList(line.split(space));
-				commandInvoker.executeCommand(tokens.get(0), tokens);
+				commandInvoker.executeCommand(tokens.get(ZERO), tokens);
 				line = reader.readLine();
 			}
 			reader.close();
