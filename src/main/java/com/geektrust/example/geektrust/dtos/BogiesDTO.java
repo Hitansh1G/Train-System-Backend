@@ -7,7 +7,7 @@ import com.geektrust.example.geektrust.entities.Station;
 import com.geektrust.example.geektrust.repositories.IBogieRepository;
 import com.geektrust.example.geektrust.repositories.IStationRepository;
 
-import static com.geektrust.example.geektrust.Util.Constants.ENGINE;
+import static com.geektrust.example.geektrust.Constants.Constants.ENGINE;
 
 public class BogiesDTO {
     private static Bogie createBogie(IBogieRepository bogieRepository, IStationRepository stationRepository, String bogieName) {

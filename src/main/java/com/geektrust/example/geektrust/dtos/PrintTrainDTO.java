@@ -5,7 +5,7 @@ import java.util.List;
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Train;
 
-import static com.geektrust.example.geektrust.Util.Constants.ENGINE;
+import static com.geektrust.example.geektrust.Constants.Constants.ENGINE;
 
 public class PrintTrainDTO {
     public static void printTrain(Train t, String arrivalOrDeparture){

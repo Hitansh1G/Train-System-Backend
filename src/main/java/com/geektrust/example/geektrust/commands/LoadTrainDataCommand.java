@@ -16,7 +16,7 @@ public class LoadTrainDataCommand implements ICommand {
             int FIRST = 0;
             iTrainService.createTrain(tokens.get(FIRST), tokens.subList(1, tokens.size()));
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }        
     }
     

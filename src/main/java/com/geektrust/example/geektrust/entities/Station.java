@@ -1,9 +1,9 @@
 package com.geektrust.example.geektrust.entities;
 
 public class Station extends BaseEntitiy {
-    private String stationName;
-    private String stationCode;
-    private int distance;
+    private final String stationName;
+    private final String stationCode;
+    private final int distance;
 
     public Station(String id, String stationName, String stationCode, int distance) {
         this.id = id;

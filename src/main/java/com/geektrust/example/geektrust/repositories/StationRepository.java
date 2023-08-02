@@ -8,7 +8,7 @@ import java.util.Optional;
 import com.geektrust.example.geektrust.entities.Station;
 
 public class StationRepository implements IStationRepository {
-    private HashMap<String, Station> stationListing;
+    private final HashMap<String, Station> stationListing;
     private Integer Increment = 0;
 
     public StationRepository() {
@@ -32,8 +32,7 @@ public class StationRepository implements IStationRepository {
     public Station save(Station station) {
         if (station.getId() == null) {
             Increment++;
-            Station newStation = new Station("S" + Increment, station.getStationName(),
-                    station.getStationCode(), station.getDistance());
+            Station newStation = new Station("S" + Increment, station.getStationName(), station.getStationCode(), station.getDistance());
             stationListing.put(newStation.getId(), newStation);
             return newStation;
         }

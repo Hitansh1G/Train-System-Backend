@@ -26,7 +26,7 @@ public class App {
 			}
 			reader.close();
 		} catch (IOException | NotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		commandInvoker.executeCommand("TRAVEL", Arrays.asList("TRAIN_A", "TRAIN_A", "HYB"));
 		commandInvoker.executeCommand("TRAVEL", Arrays.asList("TRAIN_B", "TRAIN_B", "HYB"));

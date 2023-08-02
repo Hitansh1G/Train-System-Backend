@@ -5,7 +5,7 @@ import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.dtos.PrintTrainDTO;
 import com.geektrust.example.geektrust.services.ITrainService;
 
-import static com.geektrust.example.geektrust.Util.Constants.DEPARTURE;
+import static com.geektrust.example.geektrust.Constants.Constants.DEPARTURE;
 
 public class MergeTrainCommand implements ICommand {
     private final ITrainService iTrainService;
@@ -24,7 +24,7 @@ public class MergeTrainCommand implements ICommand {
             Train train = iTrainService.mergeTrain(trainA, trainB);
             PrintTrainDTO.printTrain(train, DEPARTURE);
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         
     }

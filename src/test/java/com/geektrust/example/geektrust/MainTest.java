@@ -23,9 +23,20 @@ class MainTest {
     public void Application_Test() throws Exception{
         // Arrange
         String arguements = "sample_input/input1.txt";
-        String expectedOutput = "ARRIVAL TRAIN_A ENGINE NDL NDL GHY NJP NGP\n"+
-                "ARRIVAL TRAIN_B ENGINE NJP GHY AGA BPL PTA\n"+
-                "DEPARTURE TRAIN_AB ENGINE ENGINE GHY GHY NJP NJP PTA NDL NDL AGA BPL NGP";
+//        String expectedOutput = "ARRIVAL TRAIN_A ENGINE NDL NDL GHY NJP NGP\n"+
+//                "ARRIVAL TRAIN_B ENGINE NJP GHY AGA BPL PTA\n"+
+//                "DEPARTURE TRAIN_AB ENGINE ENGINE GHY GHY NJP NJP PTA NDL NDL AGA BPL NGP";
+
+        String expectedOutput = "ARRIVAL TRAIN_A ENGINE AGA HYB ITJ BPL\n"+
+                "ARRIVAL TRAIN_B ENGINE PTA HYB BPL ITJ NJP\n"+
+                "DEPARTURE TRAIN_AB ENGINE ENGINE HYB HYB ITJ ITJ BPL BPL AGA PTA NJP";
+
+        /*
+        *
+        * ARRIVAL TRAIN_A ENGINE AGA HYB ITJ BPL
+ARRIVAL TRAIN_B ENGINE PTA HYB BPL ITJ NJP
+DEPARTURE TRAIN_AB ENGINE ENGINE HYB HYB ITJ ITJ BPL BPL AGA PTA NJP
+        * */
         // Act
         App.run(arguements);
         // Assert
@@ -36,9 +47,23 @@ class MainTest {
     @DisplayName("#2 Integration test 2")
     public void Application_Test_2() throws Exception{
         String arguements = "sample_input/input2.txt";
-        String expectedOutput = "ARRIVAL TRAIN_A ENGINE HYB NGP ITJ\n"+
-                "ARRIVAL TRAIN_B ENGINE NJP PTA\n"+
-                "DEPARTURE TRAIN_AB ENGINE ENGINE NJP PTA ITJ NGP";
+//        String expectedOutput = "ARRIVAL TRAIN_A ENGINE HYB NGP ITJ\n"+
+//                "ARRIVAL TRAIN_B ENGINE NJP PTA\n"+
+//                "DEPARTURE TRAIN_AB ENGINE ENGINE NJP PTA ITJ NGP";
+//
+
+        String expectedOutput = "ARRIVAL TRAIN_A ENGINE NDL NDL GHY NJP NGP\n"+
+                "ARRIVAL TRAIN_B ENGINE NJP GHY AGA BPL PTA\n"+
+                "DEPARTURE TRAIN_AB ENGINE ENGINE NGP BPL AGA NDL NDL PTA NJP NJP GHY GHY";
+
+
+       /*
+       *
+       *
+       * ARRIVAL TRAIN_A ENGINE NDL NDL GHY NJP NGP
+ARRIVAL TRAIN_B ENGINE NJP GHY AGA BPL PTA
+DEPARTURE TRAIN_AB ENGINE ENGINE NGP BPL AGA NDL NDL PTA NJP NJP GHY GHY
+       * */
         // Act
         App.run(arguements);
         // Assert

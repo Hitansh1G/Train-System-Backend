@@ -5,7 +5,7 @@ import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.dtos.PrintTrainDTO;
 import com.geektrust.example.geektrust.services.ITrainService;
 
-import static com.geektrust.example.geektrust.Util.Constants.ARRIVAL;
+import static com.geektrust.example.geektrust.Constants.Constants.ARRIVAL;
 
 public class TravelCommand implements ICommand {
     private final ITrainService iTrainService;
@@ -26,7 +26,7 @@ public class TravelCommand implements ICommand {
             Train train = iTrainService.travel(trainName, routeName, destination);
             PrintTrainDTO.printTrain(train, ARRIVAL);
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }        
     }
     

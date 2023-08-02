@@ -14,7 +14,7 @@ import com.geektrust.example.geektrust.repositories.IRouteRepository;
 import com.geektrust.example.geektrust.repositories.IStationRepository;
 import com.geektrust.example.geektrust.repositories.ITrainRepository;
 
-import static com.geektrust.example.geektrust.Util.Constants.JOURNEY_ENDED;
+import static com.geektrust.example.geektrust.Constants.Constants.JOURNEY_ENDED;
 
 public class TrainService implements ITrainService {
     private final IRouteRepository iRouteRepository;

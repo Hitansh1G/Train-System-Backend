@@ -1,4 +1,4 @@
-package com.geektrust.example.geektrust.Util;
+package com.geektrust.example.geektrust.Constants;
 
 public class Constants {
     public static final String ENGINE = "ENGINE";
