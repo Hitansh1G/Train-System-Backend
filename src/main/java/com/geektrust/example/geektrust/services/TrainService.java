@@ -35,31 +35,24 @@ public class TrainService implements ITrainService {
         Train trainA = iTrainRepository.findTrainByName(trainAName);
         Train trainB = iTrainRepository.findTrainByName(trainBName);
 
-        // Find the list of boggies
-        LinkedList<Bogie> trainA_Bogies = new LinkedList<>(trainA.getBogies());
-        LinkedList<Bogie> trainB_Bogies = new LinkedList<>(trainB.getBogies());
-        if (trainA_Bogies.isEmpty() && trainB_Bogies.isEmpty()) {
+        if (trainA.getBogies().isEmpty() && trainB.getBogies().isEmpty()) {
             throw new JourneyEndedException(JOURNEY_ENDED);
         }
 
-        // Merge trainB bogies into trainA
-        trainA_Bogies.addAll(trainB_Bogies);
+        LinkedList<Bogie> mergedBogies = mergeBogies(trainA, trainB);
 
         // Sort the bogies based on route information
-        trainA_Bogies.sort(new ComparatorDTO(iRouteRepository));
+        mergedBogies.sort(new ComparatorDTO(iRouteRepository));
 
         // Remove Hyderabad from the list of bogies in the merged train
-        while (!trainA_Bogies.isEmpty() && trainA_Bogies.getLast().getdestinationStation() != null
-                && trainA_Bogies.getLast().getdestinationStation().getStationCode().equals(HYB)) {
-            trainA_Bogies.removeLast();
-        }
+        removeHyderabadBogies(mergedBogies);
 
         // Create a new Train object with merged bogies
-        Train mergedTrain = new Train(MERGED_TRAIN, trainA_Bogies);
+        Train mergedTrain = new Train(MERGED_TRAIN, mergedBogies);
 
         // Delete the original trainA and trainB from the repository
-        iTrainRepository.deleteTrain(trainAName);
-        iTrainRepository.deleteTrain(trainBName);
+        deleteTrain(trainAName);
+        deleteTrain(trainBName);
 
         // Save the mergedTrain to the repository
         iTrainRepository.save(mergedTrain);
@@ -67,6 +60,21 @@ public class TrainService implements ITrainService {
         return mergedTrain;
     }
 
+    private LinkedList<Bogie> mergeBogies(Train trainA, Train trainB) {
+        LinkedList<Bogie> mergedBogies = new LinkedList<>(trainA.getBogies());
+        mergedBogies.addAll(trainB.getBogies());
+        return mergedBogies;
+    }
+
+    private void removeHyderabadBogies(LinkedList<Bogie> bogies) {
+        while (!bogies.isEmpty() && HYB.equals(bogies.getLast().getdestinationStation().getStationCode())) {
+            bogies.removeLast();
+        }
+    }
+
+    private void deleteTrain(String trainName) {
+        iTrainRepository.deleteTrain(trainName);
+    }
 
     @Override
     public Train travel(String trainName, String routeName, String destination) {
@@ -87,5 +95,4 @@ public class TrainService implements ITrainService {
         Train newTrain = new Train(trainName, newBogies);
         iTrainRepository.save(newTrain);
     }
-    
 }

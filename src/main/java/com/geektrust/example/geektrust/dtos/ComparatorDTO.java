@@ -1,17 +1,19 @@
 package com.geektrust.example.geektrust.dtos;
 
-import java.util.Comparator;
-import java.util.List;
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
 import com.geektrust.example.geektrust.repositories.IRouteRepository;
 
+import java.util.Comparator;
+import java.util.List;
+
 import static com.geektrust.example.geektrust.Constants.Constants.HyderabadDistance;
 
-public class ComparatorDTO implements Comparator<Bogie>{
-    IRouteRepository iRouteRepository;
-    public ComparatorDTO(IRouteRepository iRouteRepository){
+public class ComparatorDTO implements Comparator<Bogie> {
+    private final IRouteRepository iRouteRepository;
+
+    public ComparatorDTO(IRouteRepository iRouteRepository) {
         this.iRouteRepository = iRouteRepository;
     }
 
@@ -42,5 +44,4 @@ public class ComparatorDTO implements Comparator<Bogie>{
         }
         return hyderabadDistance;
     }
-
 }

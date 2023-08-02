@@ -1,14 +1,17 @@
 package com.geektrust.example.geektrust.repositories;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+
 import com.geektrust.example.geektrust.entities.Route;
 
-import static com.geektrust.example.geektrust.Constants.Constants.RANDOM;
-import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
+import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class RouteRepository implements IRouteRepository {
     private final HashMap<String, Route> routeListing;
-    private Integer autoIncrement = ZERO;
+    private int autoIncrement = ZERO;
 
     public RouteRepository() {
         this.routeListing = new HashMap<>();
@@ -16,9 +19,11 @@ public class RouteRepository implements IRouteRepository {
 
     @Override
     public Route findByName(String routeName) {
-        return routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst().orElse(null);
+        return routeListing.values().stream()
+                .filter(route -> route.getRouteName().equals(routeName))
+                .findFirst()
+                .orElse(null);
     }
-
 
     @Override
     public Route save(Route route) {
@@ -32,36 +37,35 @@ public class RouteRepository implements IRouteRepository {
         return route;
     }
 
-
     @Override
     public List<Route> findAll() {
         return new ArrayList<>(routeListing.values());
-
     }
 
     @Override
     public Optional<Route> findById(String routeName) {
-        return routeListing.values().stream().filter(route -> route.getRouteName().equals(routeName)).findFirst();
-
+        return routeListing.values().stream()
+                .filter(route -> route.getRouteName().equals(routeName))
+                .findFirst();
     }
 
     @Override
     public boolean existsById(String s) {
-        return false;
+        return false; // TODO: Implement this method if needed
     }
 
     @Override
     public void delete(Route entity) {
-
+        // TODO: Implement this method if needed
     }
 
     @Override
     public void deleteById(String s) {
-
+        // TODO: Implement this method if needed
     }
 
     @Override
     public long count() {
-        return 0;
+        return 0; // TODO: Implement this method if needed
     }
 }

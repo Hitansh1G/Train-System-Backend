@@ -6,12 +6,11 @@ import java.util.Optional;
 
 import com.geektrust.example.geektrust.entities.Station;
 
-import static com.geektrust.example.geektrust.Constants.Constants.RANDOM;
-import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
+import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class StationRepository implements IStationRepository {
     private final HashMap<String, Station> stationListing;
-    private Integer Increment = ZERO;
+    private int increment = ZERO;
 
     public StationRepository() {
         this.stationListing = new HashMap<>();
@@ -19,7 +18,10 @@ public class StationRepository implements IStationRepository {
 
     @Override
     public Station findStationByCode(String stationCode) {
-        return stationListing.values().stream().filter(station -> station.getStationCode().equals(stationCode)).findFirst(). orElse(null);
+        return stationListing.values().stream()
+                .filter(station -> station.getStationCode().equals(stationCode))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -30,8 +32,8 @@ public class StationRepository implements IStationRepository {
     @Override
     public Station save(Station station) {
         if (station.getId() == null) {
-            Increment++;
-            Station newStation = new Station(RANDOM + Increment, station.getStationName(), station.getStationCode(), station.getDistance());
+            increment++;
+            Station newStation = new Station(RANDOM + increment, station.getStationName(), station.getStationCode(), station.getDistance());
             stationListing.put(newStation.getId(), newStation);
             return newStation;
         }
@@ -39,34 +41,33 @@ public class StationRepository implements IStationRepository {
         return station;
     }
 
-
     @Override
     public List<Station> findAll() {
-        return null;
+        return null; // TODO: Implement this method if needed
     }
 
     @Override
     public Optional<Station> findById(String s) {
-        return Optional.empty();
+        return Optional.empty(); // TODO: Implement this method if needed
     }
 
     @Override
     public boolean existsById(String s) {
-        return false;
+        return false; // TODO: Implement this method if needed
     }
 
     @Override
     public void delete(Station entity) {
-
+        // TODO: Implement this method if needed
     }
 
     @Override
     public void deleteById(String s) {
-
+        // TODO: Implement this method if needed
     }
 
     @Override
     public long count() {
-        return 0;
+        return 0; // TODO: Implement this method if needed
     }
 }

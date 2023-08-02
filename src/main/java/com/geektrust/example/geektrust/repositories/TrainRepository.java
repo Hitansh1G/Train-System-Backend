@@ -6,12 +6,11 @@ import java.util.Optional;
 
 import com.geektrust.example.geektrust.entities.Train;
 
-import static com.geektrust.example.geektrust.Constants.Constants.FALSE;
-import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
+import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class TrainRepository implements ITrainRepository {
     private final HashMap<String, Train> trainListing;
-    private Integer Increment = ZERO;
+    private int increment = ZERO;
 
     public TrainRepository() {
         this.trainListing = new HashMap<>();
@@ -24,17 +23,17 @@ public class TrainRepository implements ITrainRepository {
 
     @Override
     public Train findTrainByName(String trainName) {
-        return trainListing.values().stream().filter(train -> train.getTrainName().equals(trainName)).findFirst(). orElse(null);
+        return trainListing.values().stream()
+                .filter(train -> train.getTrainName().equals(trainName))
+                .findFirst()
+                .orElse(null);
     }
-
-
-
 
     @Override
     public Train save(Train train) {
         if (train.getId() == null) {
             // Generate a new ID for the train
-            int newId = Increment++;
+            int newId = increment++;
             Train newTrain = new Train(Integer.toString(newId), train.getTrainName(), train.getBogies());
             trainListing.put(newTrain.getId(), newTrain);
             return newTrain;
@@ -43,7 +42,6 @@ public class TrainRepository implements ITrainRepository {
         // If the train already has an ID, update the entry in the train listing
         trainListing.put(train.getId(), train);
         return train;
-
     }
 
     @Override
@@ -61,26 +59,23 @@ public class TrainRepository implements ITrainRepository {
         return false;
     }
 
-
     @Override
     public void deleteTrain(String trainName) {
-        // Find the train
-        Train train = trainListing.values().stream().filter(v -> v.getTrainName().equals(trainName)).findFirst(). orElse(null);
-        assert train != null;
-        trainListing.remove(train.getId());
-
+        // Find the train by name and remove it from the trainListing
+        trainListing.values().stream()
+                .filter(train -> train.getTrainName().equals(trainName))
+                .findFirst()
+                .ifPresent(train -> trainListing.remove(train.getId()));
     }
 
     @Override
-    public void delete(Train trainName) {
-        Train train = trainListing.values().stream().filter(v -> FALSE).findFirst(). orElse(null);
-        assert train != null;
+    public void delete(Train train) {
+        // Find the train by ID and remove it from the trainListing
         trainListing.remove(train.getId());
     }
 
     @Override
     public void deleteById(String s) {
-
     }
 
     @Override

@@ -13,6 +13,7 @@ import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class App {
 	public static void run(String commandLineArgs) {
+
 		ApplicationConfig applicationConfig = new ApplicationConfig();
 		CommandInvoker commandInvoker = applicationConfig.getCommandInvoker();
 		commandInvoker.executeCommand(LOAD_DATA, null);
@@ -36,7 +37,9 @@ public class App {
 	}
 
 	public static void main(String[] args) {
+
 		run(args[0]);
+
 	}
 
 }

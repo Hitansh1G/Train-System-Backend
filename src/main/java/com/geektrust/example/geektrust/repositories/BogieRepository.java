@@ -1,24 +1,25 @@
 package com.geektrust.example.geektrust.repositories;
 
+import com.geektrust.example.geektrust.entities.Bogie;
+
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-
-import com.geektrust.example.geektrust.entities.Bogie;
 
 import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
 
 public class BogieRepository implements IBogieRepository {
-    private final HashMap<String, Bogie> bogieListing;
+    private final Map<String, Bogie> bogieListing;
+    private Integer identification = ZERO;
 
     public BogieRepository() {
         this.bogieListing = new HashMap<>();
     }
 
-    private Integer identification = ZERO;
     @Override
     public Bogie save(Bogie bogie) {
-        if(bogie.getId() == null){
+        if (bogie.getId() == null) {
             identification++;
             Bogie newBogie = new Bogie(Integer.toString(identification), bogie.getdestinationStation());
             bogieListing.put(newBogie.getId(), newBogie);
@@ -28,9 +29,8 @@ public class BogieRepository implements IBogieRepository {
         return bogie;
     }
 
-
     @Override
-    public HashMap<String, Bogie> getBogieListing() {
+    public Map<String, Bogie> getBogieListing() {
         return bogieListing;
     }
 
@@ -38,7 +38,6 @@ public class BogieRepository implements IBogieRepository {
     public long count() {
         return bogieListing.size();
     }
-
 
     @Override
     public List<Bogie> findAll() {
@@ -64,6 +63,4 @@ public class BogieRepository implements IBogieRepository {
     public void deleteById(String s) {
 
     }
-
-
 }
