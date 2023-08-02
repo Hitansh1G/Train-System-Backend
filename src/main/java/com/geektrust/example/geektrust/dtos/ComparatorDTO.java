@@ -7,6 +7,8 @@ import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
 import com.geektrust.example.geektrust.repositories.IRouteRepository;
 
+import static com.geektrust.example.geektrust.Constants.Constants.HyderabadDistance;
+
 public class ComparatorDTO implements Comparator<Bogie>{
     IRouteRepository iRouteRepository;
     public ComparatorDTO(IRouteRepository iRouteRepository){
@@ -31,7 +33,7 @@ public class ComparatorDTO implements Comparator<Bogie>{
     }
 
     private int getHyderabadDistance(List<Route> routes, Station station) {
-        int hyderabadDistance = 0;
+        int hyderabadDistance = HyderabadDistance;
         for (Route route : routes) {
             if (route.getStations().contains(station)) {
                 hyderabadDistance = route.getHyderabadDistance();

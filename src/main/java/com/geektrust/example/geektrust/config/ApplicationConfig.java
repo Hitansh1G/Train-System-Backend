@@ -17,6 +17,8 @@ import com.geektrust.example.geektrust.repositories.TrainRepository;
 import com.geektrust.example.geektrust.services.ITrainService;
 import com.geektrust.example.geektrust.services.TrainService;
 
+import static com.geektrust.example.geektrust.Constants.Constants.*;
+
 public class ApplicationConfig {
     private final IRouteRepository iRouteRepository = new RouteRepository();
     private final ITrainRepository iTrainRepository = new TrainRepository();
@@ -34,11 +36,11 @@ public class ApplicationConfig {
     private final CommandInvoker commandInvoker = new CommandInvoker();
 
     public CommandInvoker getCommandInvoker() {
-        commandInvoker.register("LOAD_DATA", loadDataCommand);
-        commandInvoker.register("TRAIN_A", loadTrainDataCommand);
-        commandInvoker.register("TRAIN_B", loadTrainDataCommand);
-        commandInvoker.register("TRAVEL", travelCommand);
-        commandInvoker.register("MERGE", mergeTrainCommand);
+        commandInvoker.register(LOAD_DATA, loadDataCommand);
+        commandInvoker.register(FIRST_TRAIN, loadTrainDataCommand);
+        commandInvoker.register(SECOND_TRAIN, loadTrainDataCommand);
+        commandInvoker.register(TRAVEL, travelCommand);
+        commandInvoker.register(MERGE, mergeTrainCommand);
         return commandInvoker;
     }    
 }

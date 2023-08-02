@@ -1,7 +1,5 @@
 package com.geektrust.example.geektrust.Constants;
 
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
-
 public class Constants {
     public static final String ENGINE = "ENGINE";
     public static final String ARRIVAL = "ARRIVAL";
@@ -81,6 +79,9 @@ public class Constants {
     public static final int dis24 = 2000;
     public static final int PRIME = 31;
     public static final int TEMP = 1;
+    public static final int HyderabadDistance = 0;
+    public static final int FIRST = 1;
+    public static final int SECOND = 2;
 
 
 

@@ -5,7 +5,7 @@ import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.dtos.PrintTrainDTO;
 import com.geektrust.example.geektrust.services.ITrainService;
 
-import static com.geektrust.example.geektrust.Constants.Constants.DEPARTURE;
+import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class MergeTrainCommand implements ICommand {
     private final ITrainService iTrainService;
@@ -17,8 +17,8 @@ public class MergeTrainCommand implements ICommand {
     @Override
     public void execute(List<String> tokens) {
         try {
-            String trainA = tokens.get(0);
-            String trainB = tokens.get(1);
+            String trainA = tokens.get(ZERO);
+            String trainB = tokens.get(FIRST);
             Train train = iTrainService.mergeTrain(trainA, trainB);
             PrintTrainDTO.printTrain(train, DEPARTURE);
         } catch (Exception ignored) {

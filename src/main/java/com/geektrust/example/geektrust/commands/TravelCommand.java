@@ -5,7 +5,7 @@ import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.dtos.PrintTrainDTO;
 import com.geektrust.example.geektrust.services.ITrainService;
 
-import static com.geektrust.example.geektrust.Constants.Constants.ARRIVAL;
+import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class TravelCommand implements ICommand {
     private final ITrainService iTrainService;
@@ -20,9 +20,9 @@ public class TravelCommand implements ICommand {
 //            int FIRST = 0;
 //            int SECOND = 1;
 //            int THIRD = 2;
-            String trainName = tokens.get(0);
-            String routeName = tokens.get(1);
-            String destination = tokens.get(2);
+            String trainName = tokens.get(ZERO);
+            String routeName = tokens.get(FIRST);
+            String destination = tokens.get(SECOND);
             Train train = iTrainService.travel(trainName, routeName, destination);
             PrintTrainDTO.printTrain(train, ARRIVAL);
         } catch (Exception ignored) {
