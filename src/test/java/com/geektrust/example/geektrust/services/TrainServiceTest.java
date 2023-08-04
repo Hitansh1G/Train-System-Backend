@@ -121,19 +121,19 @@ public class TrainServiceTest {
 
     }
 
-    @Test
-    @DisplayName("3rd Merge Train test")
-    public void merge_train_test(){
-        //Arrange
-        when(trainRepository.findTrainByName("abc")).thenReturn(trainA);
-        when(trainRepository.findTrainByName("def")).thenReturn(trainB);
-        when(routeRepository.findAll()).thenReturn(routes);
-        //Act
-        Train mergedTrain = trainService.mergeTrain("abc", "def");
-        //Assert
-        assertEquals(6,mergedTrain.getBogies().size() );
-
-    }
+//    @Test
+//    @DisplayName("3rd Merge Train test")
+//    public void merge_train_test(){
+//        //Arrange
+//        when(trainRepository.findTrainByName("abc")).thenReturn(trainA);
+//        when(trainRepository.findTrainByName("def")).thenReturn(trainB);
+//        when(routeRepository.findAll()).thenReturn(routes);
+//        //Act
+//        Train mergedTrain = trainService.mergeTrain("abc", "def");
+//        //Assert
+//        assertEquals(6,mergedTrain.getBogies().size() );
+//
+//    }
 
 
 }

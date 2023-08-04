@@ -2,25 +2,28 @@ package com.geektrust.example.geektrust.services;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import com.geektrust.example.geektrust.dtos.BogiesDTO;
+import com.geektrust.example.geektrust.dtos.ComparatorDTO;
+import com.geektrust.example.geektrust.dtos.GeneratedListDTO;
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.exceptions.JourneyEndedException;
-import com.geektrust.example.geektrust.dtos.BogiesDTO;
-import com.geektrust.example.geektrust.dtos.GeneratedListDTO;
-import com.geektrust.example.geektrust.dtos.ComparatorDTO;
 import com.geektrust.example.geektrust.repositories.IBogieRepository;
 import com.geektrust.example.geektrust.repositories.IRouteRepository;
 import com.geektrust.example.geektrust.repositories.IStationRepository;
 import com.geektrust.example.geektrust.repositories.ITrainRepository;
 
-import static com.geektrust.example.geektrust.Constants.Constants.*;
+import static com.geektrust.example.geektrust.Constants.Constants.MERGED_TRAIN;
+import static com.geektrust.example.geektrust.Constants.Constants.JOURNEY_ENDED;
 
 public class TrainService implements ITrainService {
     private final IRouteRepository iRouteRepository;
     private final ITrainRepository iTrainRepository;
     private final IBogieRepository iBogieRepository;
     private final IStationRepository iStationRepository;
+    private IBogieService iBogieService ;
 
     public TrainService(IRouteRepository iRouteRepository, ITrainRepository iTrainRepository,
                         IBogieRepository iBogieRepository, IStationRepository iStationRepository) {
@@ -39,13 +42,13 @@ public class TrainService implements ITrainService {
             throw new JourneyEndedException(JOURNEY_ENDED);
         }
 
-        LinkedList<Bogie> mergedBogies = mergeBogies(trainA, trainB);
+        LinkedList<Bogie> mergedBogies = iBogieService.mergeBogies(trainA, trainB);
 
         // Sort the bogies based on route information
         mergedBogies.sort(new ComparatorDTO(iRouteRepository));
 
         // Remove Hyderabad from the list of bogies in the merged train
-        removeHyderabadBogies(mergedBogies);
+        iBogieService.removeHyderabadBogies(mergedBogies);
 
         // Create a new Train object with merged bogies
         Train mergedTrain = new Train(MERGED_TRAIN, mergedBogies);
@@ -58,18 +61,6 @@ public class TrainService implements ITrainService {
         iTrainRepository.save(mergedTrain);
 
         return mergedTrain;
-    }
-
-    private LinkedList<Bogie> mergeBogies(Train trainA, Train trainB) {
-        LinkedList<Bogie> mergedBogies = new LinkedList<>(trainA.getBogies());
-        mergedBogies.addAll(trainB.getBogies());
-        return mergedBogies;
-    }
-
-    private void removeHyderabadBogies(LinkedList<Bogie> bogies) {
-        while (!bogies.isEmpty() && HYB.equals(bogies.getLast().getdestinationStation().getStationCode())) {
-            bogies.removeLast();
-        }
     }
 
     private void deleteTrain(String trainName) {
@@ -86,7 +77,6 @@ public class TrainService implements ITrainService {
         }
         iTrainRepository.save(trainEntity);
         return trainEntity;
-
     }
 
     @Override
