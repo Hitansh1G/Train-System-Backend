@@ -5,7 +5,6 @@ import com.geektrust.example.geektrust.entities.Bogie;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static com.geektrust.example.geektrust.Constants.Constants.ZERO;
 
@@ -34,33 +33,10 @@ public class BogieRepository implements IBogieRepository {
         return bogieListing;
     }
 
-//    @Override
-//    public long count() {
-//        return bogieListing.size();
-//    }
 
     @Override
     public List<Bogie> findAll() {
         return null;
     }
 
-//    @Override
-//    public Optional<Bogie> findById(String s) {
-//        return Optional.empty();
-//    }
-//
-//    @Override
-//    public boolean existsById(String s) {
-//        return false;
-//    }
-//
-//    @Override
-//    public void delete(Bogie entity) {
-//
-//    }
-//
-//    @Override
-//    public void deleteById(String s) {
-//
-//    }
 }

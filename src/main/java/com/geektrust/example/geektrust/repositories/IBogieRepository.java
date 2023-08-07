@@ -1,6 +1,5 @@
 package com.geektrust.example.geektrust.repositories;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.geektrust.example.geektrust.entities.Bogie;

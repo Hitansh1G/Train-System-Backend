@@ -15,8 +15,11 @@ public class PrintTrainDTO {
             String bogieName = bogie.getdestinationStation() == null ? ENGINE : bogie.getdestinationStationCode();
             bogies.add(bogieName);
         }
-        System.out.print(arrivalOrDeparture + space + t.getTrainName() + space + String.join(space, bogies));
-        System.out.println();
+        printTrainInfo(arrivalOrDeparture, t.getTrainName(), bogies);
     }
 
+    private static void printTrainInfo(String arrivalOrDeparture, String trainName, List<String> bogies) {
+        System.out.print(arrivalOrDeparture + space + trainName + space + String.join(space, bogies));
+        System.out.println();
+    }
 }

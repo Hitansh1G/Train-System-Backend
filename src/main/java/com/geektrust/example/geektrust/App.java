@@ -16,7 +16,6 @@ import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class App {
 	public static void run(String commandLineArgs) {
-
 		ApplicationConfig applicationConfig = new ApplicationConfig();
 		CommandInvoker commandInvoker = applicationConfig.getCommandInvoker();
 		commandInvoker.executeCommand(LOAD_DATA, null);
@@ -30,7 +29,7 @@ public class App {
 			return;
 		}
 
-		BufferedReader reader;
+		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(filePath.toString()));
 			String line = reader.readLine();
@@ -39,9 +38,18 @@ public class App {
 				commandInvoker.executeCommand(tokens.get(ZERO), tokens);
 				line = reader.readLine();
 			}
-			reader.close();
-		} catch (IOException | NotFoundException e) {
+		} catch (IOException e) {
 			System.err.println("Error reading the input file.");
+		} catch (NotFoundException e) {
+			System.err.println("Data not found in the application.");
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					System.err.println("Error closing the input file.");
+				}
+			}
 		}
 
 		commandInvoker.executeCommand(TRAVEL, Arrays.asList(FIRST_TRAIN, FIRST_TRAIN, HYB));
@@ -58,10 +66,10 @@ public class App {
 		run(args[0]);
 	}
 
-	// Method to validate if the file path is within the allowed directory
 	private static boolean isValidFilePath(Path filePath) {
 		// Implement your logic to check if the file path is valid and within allowed directories
 		// For example, compare against a predefined whitelist of directories or check for specific allowed paths
-		return Files.exists(filePath) && filePath.startsWith(Paths.get("/path/to/allowed/directory"));
+		// Here, we are allowing only files from the "/path/to/allowed/directory" and its subdirectories
+		return Files.exists(filePath) && filePath.normalize().startsWith(Paths.get("/path/to/allowed/directory").normalize());
 	}
 }

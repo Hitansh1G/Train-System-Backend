@@ -5,7 +5,7 @@ import static com.geektrust.example.geektrust.Constants.Constants.TEMP;
 
 public class Station extends BaseEntitiy {
     private String stationName;
-    private String stationCode;
+    private final String stationCode;
     private final int distance;
 
     public Station(String id, String stationName, String stationCode, int distance) {
@@ -33,17 +33,9 @@ public class Station extends BaseEntitiy {
         this.stationName = stationName;
     }
 
-    public void setStationCode(String stationCode) {
-        this.stationCode = stationCode;
-    }
-
     public int getDistance() {
         return distance;
     }
-
-//    public void addStation(Station station) {
-//        station.add(station);
-//    }
 
     @Override
     public int hashCode() {

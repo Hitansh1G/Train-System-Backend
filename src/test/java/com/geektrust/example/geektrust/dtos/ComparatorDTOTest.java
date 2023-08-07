@@ -3,11 +3,12 @@ package com.geektrust.example.geektrust.dtos;
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
-import com.geektrust.example.geektrust.repositories.RouteRepositoryInterface;
+import com.geektrust.example.geektrust.repositories.IRouteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,12 +17,12 @@ import static org.mockito.Mockito.*;
 
 public class ComparatorDTOTest {
 
-    private RouteRepositoryInterface routeRepository;
+    private IRouteRepository routeRepository;
     private ComparatorDTO comparator;
 
     @BeforeEach
     public void setUp() {
-        routeRepository = mock(RouteRepositoryInterface.class);
+        routeRepository = mock(IRouteRepository.class);
         comparator = new ComparatorDTO(routeRepository);
     }
 
@@ -58,8 +59,8 @@ public class ComparatorDTOTest {
     @Test
     public void testCompareWithStations() {
         List<Route> routes = Arrays.asList(
-                new Route("R1", "Route1", new LinkedList<>(Arrays.asList(new Station("STN1", "Station1", "STN1", 100))), 200),
-                new Route("R2", "Route2", new LinkedList<>(Arrays.asList(new Station("STN2", "Station2", "STN2", 200))), 300)
+                new Route("R1", "Route1", new LinkedList<>(Collections.singletonList(new Station("STN1", "Station1", "STN1", 100))), 200),
+                new Route("R2", "Route2", new LinkedList<>(Collections.singletonList(new Station("STN2", "Station2", "STN2", 200))), 300)
         );
 
         when(routeRepository.findAll()).thenReturn(routes);

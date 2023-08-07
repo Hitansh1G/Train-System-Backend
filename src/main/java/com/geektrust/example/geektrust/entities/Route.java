@@ -7,7 +7,7 @@ import static com.geektrust.example.geektrust.Constants.Constants.TEMP;
 
 public class Route extends BaseEntitiy {
     private String routeName;
-    private LinkedList<Station> stations = new LinkedList<Station>();
+    private LinkedList<Station> stations;
     private final int hyderabadDistance;
 
     public Route(String id, String routeName, LinkedList<Station> stations, int hyderabadDistance) {

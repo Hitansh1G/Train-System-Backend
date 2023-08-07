@@ -11,7 +11,7 @@ import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.exceptions.JourneyEndedException;
 import com.geektrust.example.geektrust.repositories.IBogieRepository;
-import com.geektrust.example.geektrust.repositories.RouteRepositoryInterface;
+import com.geektrust.example.geektrust.repositories.IRouteRepository;
 import com.geektrust.example.geektrust.repositories.IStationRepository;
 import com.geektrust.example.geektrust.repositories.ITrainRepository;
 
@@ -19,15 +19,15 @@ import static com.geektrust.example.geektrust.Constants.Constants.MERGED_TRAIN;
 import static com.geektrust.example.geektrust.Constants.Constants.JOURNEY_ENDED;
 
 public class TrainService implements ITrainService {
-    private final RouteRepositoryInterface routeRepositoryInterface;
+    private final IRouteRepository IRouteRepository;
     private final ITrainRepository iTrainRepository;
     private final IBogieRepository iBogieRepository;
     private final IStationRepository iStationRepository;
     private IBogieService iBogieService ;
 
-    public TrainService(RouteRepositoryInterface routeRepositoryInterface, ITrainRepository iTrainRepository,
+    public TrainService(IRouteRepository IRouteRepository, ITrainRepository iTrainRepository,
                         IBogieRepository iBogieRepository, IStationRepository iStationRepository) {
-        this.routeRepositoryInterface = routeRepositoryInterface;
+        this.IRouteRepository = IRouteRepository;
         this.iTrainRepository = iTrainRepository;
         this.iBogieRepository = iBogieRepository;
         this.iStationRepository = iStationRepository;
@@ -45,7 +45,7 @@ public class TrainService implements ITrainService {
         LinkedList<Bogie> mergedBogies = iBogieService.mergeBogies(trainA, trainB);
 
         // Sort the bogies based on route information
-        mergedBogies.sort(new ComparatorDTO(routeRepositoryInterface));
+        mergedBogies.sort(new ComparatorDTO(IRouteRepository));
 
         // Remove Hyderabad from the list of bogies in the merged train
         iBogieService.removeHyderabadBogies(mergedBogies);
@@ -70,7 +70,7 @@ public class TrainService implements ITrainService {
     @Override
     public Train travel(String trainName, String routeName, String destination) {
         Train trainEntity = iTrainRepository.findTrainByName(trainName);
-        Route routeEntity = routeRepositoryInterface.findByName(routeName);
+        Route routeEntity = IRouteRepository.findByName(routeName);
         List<Bogie> bogsToRemove = GeneratedListDTO.generateBogiesToRemoved(routeEntity.getStations(), trainEntity.getBogies(), destination);
         for (Bogie bogie : bogsToRemove) {
             trainEntity.deleteBogie(bogie);

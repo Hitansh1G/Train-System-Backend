@@ -17,9 +17,6 @@ public class TravelCommand implements ICommand {
     @Override
     public void execute(List<String> tokens) {
         try {
-//            int FIRST = 0;
-//            int SECOND = 1;
-//            int THIRD = 2;
             String trainName = tokens.get(ZERO);
             String routeName = tokens.get(FIRST);
             String destination = tokens.get(SECOND);

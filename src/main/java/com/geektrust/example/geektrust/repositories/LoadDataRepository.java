@@ -11,11 +11,11 @@ import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class LoadDataRepository implements IDataRepository {
     private final IStationRepository iStationRepository;
-    private final RouteRepositoryInterface routeRepositoryInterface;
+    private final IRouteRepository IRouteRepository;
 
-    public LoadDataRepository(IStationRepository iStationRepository, RouteRepositoryInterface routeRepositoryInterface) {
+    public LoadDataRepository(IStationRepository iStationRepository, IRouteRepository IRouteRepository) {
         this.iStationRepository = iStationRepository;
-        this.routeRepositoryInterface = routeRepositoryInterface;
+        this.IRouteRepository = IRouteRepository;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LoadDataRepository implements IDataRepository {
         stationsOfRoute1.add(saveStation(new Station(New_Delhi, NDL, dis11)));
 
         Route route1 = new Route(FIRST_TRAIN, stationsOfRoute1, dis1);
-        routeRepositoryInterface.save(route1);
+        IRouteRepository.save(route1);
     }
 
     private void loadSecondRoute() {
@@ -58,7 +58,7 @@ public class LoadDataRepository implements IDataRepository {
         stationsOfRoute2.add(saveStation(new Station(Guwahati, GHY, dis23)));
 
         Route route2 = new Route(SECOND_TRAIN, stationsOfRoute2, dis24);
-        routeRepositoryInterface.save(route2);
+        IRouteRepository.save(route2);
     }
 
     private Station saveStation(Station station) {
@@ -74,34 +74,4 @@ public class LoadDataRepository implements IDataRepository {
     public List<Data> findAll() {
         return null;
     }
-
-//    @Override
-//    public List<Data> findAll() {
-//        return null;
-//    }
-
-//    @Override
-//    public Optional<Data> findById(String s) {
-//        return Optional.empty();
-//    }
-//
-//    @Override
-//    public boolean existsById(String s) {
-//        return false;
-//    }
-//
-//    @Override
-//    public void delete(Data entity) {
-//
-//    }
-//
-//    @Override
-//    public void deleteById(String s) {
-//
-//    }
-//
-//    @Override
-//    public long count() {
-//        return 0;
-//    }
 }

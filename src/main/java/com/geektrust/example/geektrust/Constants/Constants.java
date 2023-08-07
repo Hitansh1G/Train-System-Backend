@@ -13,7 +13,6 @@ public class Constants {
     public static final String HYB = "HYB";
     public static final String MERGE  = "MERGE";
     public static final String MERGED_TRAIN = "TRAIN_AB";
-    public static final boolean FALSE = false;
     public static final int ZERO = 0;
     public static final String RANDOM = "qwertyuiopasdfghjklzxcvbnm";
     public static final String Chennai = "Chennai";

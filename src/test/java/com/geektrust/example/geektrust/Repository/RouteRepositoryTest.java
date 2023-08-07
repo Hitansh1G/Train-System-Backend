@@ -1,20 +1,13 @@
 package com.geektrust.example.geektrust.Repository;
 
-//package com.geektrust.example.geektrust.repositories;
-
 import com.geektrust.example.geektrust.entities.Route;
-import com.geektrust.example.geektrust.entities.Station;
 
 import com.geektrust.example.geektrust.repositories.RouteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class RouteRepositoryTest {
 
@@ -58,19 +51,5 @@ public class RouteRepositoryTest {
 
         assertEquals(savedRoute, routeRepository.findByName("NewRoute"));
     }
-
-//    @Test
-//    public void testFindAll() {
-//        List<Route> routes = new LinkedList<>();
-//        routes.add(new Route("Route1", new LinkedList<>(), 100));
-//        routes.add(new Route("Route2", new LinkedList<>(), 200));
-//        routes.add(new Route("Route3", new LinkedList<>(), 300));
-//
-//        for (Route route : routes) {
-//            routeRepository.save(route);
-//        }
-//
-//        assertEquals(routes, routeRepository.findAll());
-//    }
 }
 

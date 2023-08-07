@@ -1,31 +1,27 @@
 package com.geektrust.example.geektrust.Repository;
 
-//package com.geektrust.example.geektrust.repositories;
-
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Train;
 import com.geektrust.example.geektrust.repositories.TrainRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class TrainRepositoryTest {
 
     private TrainRepository trainRepository;
 
-    @Mock
-    private Train trainMock;
+    public TrainRepositoryTest() {
+    }
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         trainRepository = new TrainRepository();
     }
 
@@ -64,24 +60,6 @@ public class TrainRepositoryTest {
         assertEquals(trainName, savedTrain.getTrainName());
         assertEquals(bogies, savedTrain.getBogies());
     }
-
-//    @Test
-//    public void testUpdate() {
-//        String trainName = "Train1";
-//        LinkedList<Bogie> bogies = new LinkedList<>();
-//        bogies.add(new Bogie("Bogie1", null));
-//        Train train = new Train(trainName, bogies);
-//
-//        Train savedTrain = trainRepository.save(train);
-//
-//        String newTrainName = "Train1Updated";
-//        savedTrain.setTrainName(newTrainName);
-//        trainRepository.save(savedTrain);
-//
-//        Train updatedTrain = trainRepository.findTrainByName(newTrainName);
-//        assertNotNull(updatedTrain);
-//        assertEquals(newTrainName, updatedTrain.getTrainName());
-//    }
 
     @Test
     public void testDeleteTrain() {

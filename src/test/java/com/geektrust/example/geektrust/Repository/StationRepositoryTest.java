@@ -1,29 +1,26 @@
 package com.geektrust.example.geektrust.Repository;
 
-//package com.geektrust.example.geektrust.repositories;
 
 import com.geektrust.example.geektrust.entities.Station;
 import com.geektrust.example.geektrust.repositories.StationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class StationRepositoryTest {
 
     private StationRepository stationRepository;
 
-    @Mock
-    private Station stationMock;
+    public StationRepositoryTest() {
+    }
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         stationRepository = new StationRepository();
     }
 
@@ -75,19 +72,6 @@ public class StationRepositoryTest {
         assertNotNull(updatedStation);
         assertEquals(newStationName, updatedStation.getStationName());
     }
-
-//    @Test
-//    public void testDeleteStation() {
-//        String stationCode = "STN1";
-//        Station station = new Station("Station1", stationCode, 100);
-//
-//        stationRepository.save(station);
-//
-//        stationRepository.deleteStation(stationCode);
-//
-//        Station deletedStation = stationRepository.findStationByCode(stationCode);
-//        assertNull(deletedStation);
-//    }
 
 
 }

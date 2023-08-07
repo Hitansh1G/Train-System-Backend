@@ -2,7 +2,6 @@ package com.geektrust.example.geektrust.repositories;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import com.geektrust.example.geektrust.entities.Station;
 
@@ -45,29 +44,4 @@ public class StationRepository implements IStationRepository {
     public List<Station> findAll() {
         return null; // TODO: Implement this method if needed
     }
-
-//    @Override
-//    public Optional<Station> findById(String s) {
-//        return Optional.empty(); // TODO: Implement this method if needed
-//    }
-
-//    @Override
-//    public boolean existsById(String s) {
-//        return false; // TODO: Implement this method if needed
-//    }
-//
-//    @Override
-//    public void delete(Station entity) {
-//        // TODO: Implement this method if needed
-//    }
-//
-//    @Override
-//    public void deleteById(String s) {
-//        // TODO: Implement this method if needed
-//    }
-//
-//    @Override
-//    public long count() {
-//        return 0; // TODO: Implement this method if needed
-//    }
 }

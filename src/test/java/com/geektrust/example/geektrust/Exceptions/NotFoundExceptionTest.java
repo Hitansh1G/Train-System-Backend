@@ -1,7 +1,5 @@
 package com.geektrust.example.geektrust.Exceptions;
 
-//package com.geektrust.example.geektrust.exceptions;
-
 import com.geektrust.example.geektrust.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;
 

@@ -8,7 +8,7 @@ import com.geektrust.example.geektrust.entities.Route;
 
 import static com.geektrust.example.geektrust.Constants.Constants.*;
 
-public class RouteRepository implements RouteRepositoryInterface {
+public class RouteRepository implements IRouteRepository {
     private final HashMap<String, Route> routeListing;
     private int autoIncrement = ZERO;
 
