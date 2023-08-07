@@ -19,21 +19,24 @@ public class ComparatorDTO implements Comparator<Bogie> {
 
     @Override
     public int compare(Bogie bogie1, Bogie bogie2) {
-        if (bogie1.getdestinationStation() == null) {
+        Station bogie1Station = bogie1.getdestinationStation();
+        Station bogie2Station = bogie2.getdestinationStation();
+
+        if (bogie1Station == null && bogie2Station == null) {
+            return 0;
+        } else if (bogie1Station == null) {
             return -1;
-        }
-        if (bogie2.getdestinationStation() == null) {
+        } else if (bogie2Station == null) {
             return 1;
         }
+
         List<Route> routes = iRouteRepository.findAll();
-        Station bogie1Station = bogie1.getdestinationStation();
         int hyderabadDistanceOfBogie1 = getHyderabadDistance(routes, bogie1Station);
-        Station bogie2Station = bogie2.getdestinationStation();
         int hyderabadDistanceOfBogie2 = getHyderabadDistance(routes, bogie2Station);
 
         return (bogie1Station.getDistance() - hyderabadDistanceOfBogie1) - (bogie2Station.getDistance() - hyderabadDistanceOfBogie2);
+//        return 0;
     }
-
     private int getHyderabadDistance(List<Route> routes, Station station) {
         int hyderabadDistance = HyderabadDistance;
         for (Route route : routes) {

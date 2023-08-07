@@ -9,16 +9,14 @@ import static com.geektrust.example.geektrust.Constants.Constants.ENGINE;
 import static com.geektrust.example.geektrust.Constants.Constants.space;
 
 public class PrintTrainDTO {
-    public static void printTrain(Train t, String arrivalOrDeparture){
+    public static void printTrain(Train t, String arrivalOrDeparture) {
         List<String> bogies = new ArrayList<>();
-        for(Bogie bogie :t.getBogies()){
-            if(bogie.getdestinationStation() == null){
-                bogies.add(ENGINE);
-            }else{
-                bogies.add(bogie.getdestinationStationCode());
-            }
+        for (Bogie bogie : t.getBogies()) {
+            String bogieName = bogie.getdestinationStation() == null ? ENGINE : bogie.getdestinationStationCode();
+            bogies.add(bogieName);
         }
-        System.out.print(arrivalOrDeparture + space + t.getTrainName() + space + String.join(space,bogies));
+        System.out.print(arrivalOrDeparture + space + t.getTrainName() + space + String.join(space, bogies));
         System.out.println();
-    }    
+    }
+
 }

@@ -34,33 +34,33 @@ public class BogieRepository implements IBogieRepository {
         return bogieListing;
     }
 
-    @Override
-    public long count() {
-        return bogieListing.size();
-    }
+//    @Override
+//    public long count() {
+//        return bogieListing.size();
+//    }
 
     @Override
     public List<Bogie> findAll() {
         return null;
     }
 
-    @Override
-    public Optional<Bogie> findById(String s) {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean existsById(String s) {
-        return false;
-    }
-
-    @Override
-    public void delete(Bogie entity) {
-
-    }
-
-    @Override
-    public void deleteById(String s) {
-
-    }
+//    @Override
+//    public Optional<Bogie> findById(String s) {
+//        return Optional.empty();
+//    }
+//
+//    @Override
+//    public boolean existsById(String s) {
+//        return false;
+//    }
+//
+//    @Override
+//    public void delete(Bogie entity) {
+//
+//    }
+//
+//    @Override
+//    public void deleteById(String s) {
+//
+//    }
 }

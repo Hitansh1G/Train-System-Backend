@@ -12,18 +12,12 @@ import static com.geektrust.example.geektrust.Constants.Constants.ENGINE;
 
 public class BogiesDTO {
     private static Bogie createBogie(IBogieRepository bogieRepository, IStationRepository stationRepository, String bogieName) {
-        Bogie bogie;
-        if (bogieName.equals(ENGINE)) {
-            // If the name is equal to "ENGINE"
-            bogie = new Bogie(null);
-        } else {
-            // Find the station
-            Station station = stationRepository.findStationByCode(bogieName);
-            bogie = new Bogie(station);
-        }
+        Station station = bogieName.equals(ENGINE) ? null : stationRepository.findStationByCode(bogieName);
+        Bogie bogie = new Bogie(station);
         bogie = bogieRepository.save(bogie);
         return bogie;
     }
+
 
     public static LinkedList<Bogie> createListOfBogies(IBogieRepository bogieRepository, IStationRepository stationRepository, List<String> bogies) {
         LinkedList<Bogie> newBogies = new LinkedList<>();

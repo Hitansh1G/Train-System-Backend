@@ -76,28 +76,33 @@ public class LoadDataRepository implements IDataRepository {
         return null;
     }
 
-    @Override
-    public Optional<Data> findById(String s) {
-        return Optional.empty();
-    }
+//    @Override
+//    public List<Data> findAll() {
+//        return null;
+//    }
 
-    @Override
-    public boolean existsById(String s) {
-        return false;
-    }
-
-    @Override
-    public void delete(Data entity) {
-
-    }
-
-    @Override
-    public void deleteById(String s) {
-
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
+//    @Override
+//    public Optional<Data> findById(String s) {
+//        return Optional.empty();
+//    }
+//
+//    @Override
+//    public boolean existsById(String s) {
+//        return false;
+//    }
+//
+//    @Override
+//    public void delete(Data entity) {
+//
+//    }
+//
+//    @Override
+//    public void deleteById(String s) {
+//
+//    }
+//
+//    @Override
+//    public long count() {
+//        return 0;
+//    }
 }

@@ -48,16 +48,16 @@ public class TrainRepository implements ITrainRepository {
     public List<Train> findAll() {
         return null;
     }
-
-    @Override
-    public Optional<Train> findById(String s) {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean existsById(String s) {
-        return false;
-    }
+//
+//    @Override
+//    public Optional<Train> findById(String s) {
+//        return Optional.empty();
+//    }
+//
+//    @Override
+//    public boolean existsById(String s) {
+//        return false;
+//    }
 
     @Override
     public void deleteTrain(String trainName) {
@@ -68,18 +68,18 @@ public class TrainRepository implements ITrainRepository {
                 .ifPresent(train -> trainListing.remove(train.getId()));
     }
 
-    @Override
-    public void delete(Train train) {
-        // Find the train by ID and remove it from the trainListing
-        trainListing.remove(train.getId());
-    }
-
-    @Override
-    public void deleteById(String s) {
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
+//    @Override
+//    public void delete(Train train) {
+//        // Find the train by ID and remove it from the trainListing
+//        trainListing.remove(train.getId());
+//    }
+//
+//    @Override
+//    public void deleteById(String s) {
+//    }
+//
+//    @Override
+//    public long count() {
+//        return 0;
+//    }
 }

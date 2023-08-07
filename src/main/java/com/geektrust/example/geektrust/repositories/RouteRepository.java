@@ -42,30 +42,30 @@ public class RouteRepository implements IRouteRepository {
         return new ArrayList<>(routeListing.values());
     }
 
-    @Override
-    public Optional<Route> findById(String routeName) {
-        return routeListing.values().stream()
-                .filter(route -> route.getRouteName().equals(routeName))
-                .findFirst();
-    }
+//    @Override
+//    public Optional<Route> findById(String routeName) {
+//        return routeListing.values().stream()
+//                .filter(route -> route.getRouteName().equals(routeName))
+//                .findFirst();
+//    }
 
-    @Override
-    public boolean existsById(String s) {
-        return false; // TODO: Implement this method if needed
-    }
-
-    @Override
-    public void delete(Route entity) {
-        // TODO: Implement this method if needed
-    }
-
-    @Override
-    public void deleteById(String s) {
-        // TODO: Implement this method if needed
-    }
-
-    @Override
-    public long count() {
-        return 0; // TODO: Implement this method if needed
-    }
+//    @Override
+//    public boolean existsById(String s) {
+//        return false; // TODO: Implement this method if needed
+//    }
+//
+//    @Override
+//    public void delete(Route entity) {
+//        // TODO: Implement this method if needed
+//    }
+//
+//    @Override
+//    public void deleteById(String s) {
+//        // TODO: Implement this method if needed
+//    }
+//
+//    @Override
+//    public long count() {
+//        return 0; // TODO: Implement this method if needed
+//    }
 }
