@@ -23,7 +23,7 @@ public class Bogie extends BaseEntitiy {
         return destinationStation.getStationCode();
     }
 
-    private Boolean ifDestinationNull(Bogie  bogie1, Bogie  bogie2){
+    public Boolean ifDestinationNull(Bogie bogie1, Bogie bogie2){
         return bogie1.getdestinationStation() == null && bogie2.getdestinationStation() != null || (bogie1.getdestinationStation() != null && bogie2.getdestinationStation() == null);
     }
 

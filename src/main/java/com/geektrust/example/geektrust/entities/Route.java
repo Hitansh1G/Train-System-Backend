@@ -35,6 +35,14 @@ public class Route extends BaseEntitiy {
         return hyderabadDistance;
     }
 
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
+    }
+
+    public void setStations(LinkedList<Station> stations) {
+        this.stations = stations;
+    }
+
     public boolean isStationPresent(Station stn) {
         for(Station station:stations){
             if(station.equals(stn)) return true;

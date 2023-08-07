@@ -3,7 +3,7 @@ package com.geektrust.example.geektrust.dtos;
 import com.geektrust.example.geektrust.entities.Bogie;
 import com.geektrust.example.geektrust.entities.Route;
 import com.geektrust.example.geektrust.entities.Station;
-import com.geektrust.example.geektrust.repositories.IRouteRepository;
+import com.geektrust.example.geektrust.repositories.RouteRepositoryInterface;
 
 import java.util.Comparator;
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.List;
 import static com.geektrust.example.geektrust.Constants.Constants.HyderabadDistance;
 
 public class ComparatorDTO implements Comparator<Bogie> {
-    private final IRouteRepository iRouteRepository;
+    private final RouteRepositoryInterface routeRepositoryInterface;
 
-    public ComparatorDTO(IRouteRepository iRouteRepository) {
-        this.iRouteRepository = iRouteRepository;
+    public ComparatorDTO(RouteRepositoryInterface routeRepositoryInterface) {
+        this.routeRepositoryInterface = routeRepositoryInterface;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ComparatorDTO implements Comparator<Bogie> {
             return 1;
         }
 
-        List<Route> routes = iRouteRepository.findAll();
+        List<Route> routes = routeRepositoryInterface.findAll();
         int hyderabadDistanceOfBogie1 = getHyderabadDistance(routes, bogie1Station);
         int hyderabadDistanceOfBogie2 = getHyderabadDistance(routes, bogie2Station);
 

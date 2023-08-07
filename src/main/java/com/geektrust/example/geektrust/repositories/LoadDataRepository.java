@@ -6,17 +6,16 @@ import com.geektrust.example.geektrust.entities.Station;
 import javax.xml.crypto.Data;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.geektrust.example.geektrust.Constants.Constants.*;
 
 public class LoadDataRepository implements IDataRepository {
     private final IStationRepository iStationRepository;
-    private final IRouteRepository iRouteRepository;
+    private final RouteRepositoryInterface routeRepositoryInterface;
 
-    public LoadDataRepository(IStationRepository iStationRepository, IRouteRepository iRouteRepository) {
+    public LoadDataRepository(IStationRepository iStationRepository, RouteRepositoryInterface routeRepositoryInterface) {
         this.iStationRepository = iStationRepository;
-        this.iRouteRepository = iRouteRepository;
+        this.routeRepositoryInterface = routeRepositoryInterface;
     }
 
     @Override
@@ -40,7 +39,7 @@ public class LoadDataRepository implements IDataRepository {
         stationsOfRoute1.add(saveStation(new Station(New_Delhi, NDL, dis11)));
 
         Route route1 = new Route(FIRST_TRAIN, stationsOfRoute1, dis1);
-        iRouteRepository.save(route1);
+        routeRepositoryInterface.save(route1);
     }
 
     private void loadSecondRoute() {
@@ -59,7 +58,7 @@ public class LoadDataRepository implements IDataRepository {
         stationsOfRoute2.add(saveStation(new Station(Guwahati, GHY, dis23)));
 
         Route route2 = new Route(SECOND_TRAIN, stationsOfRoute2, dis24);
-        iRouteRepository.save(route2);
+        routeRepositoryInterface.save(route2);
     }
 
     private Station saveStation(Station station) {
